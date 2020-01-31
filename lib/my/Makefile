@@ -1,43 +1,30 @@
 ##
 ## EPITECH PROJECT, 2019
-## do_op
+## Makefile
 ## File description:
-## do operation
+## COMPILE LIBMY.A
 ##
 
-SRC	=	create_window.c \
-		../../src/game.c \
-		../../src/init_variables.c \
-		../../src/event_gestion.c \
-		../../src/map_one/init/init_sprite_texture.c \
-		../../src/map_one/disp/disp_map.c \
-		../../src/map_one/map_grotte.c \
+SRC = $(wildcard *.c)
 
-OBJ	=	$(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
-NAME	=	libmy.a
+LIB = libmy.a
 
-BIN	=	../../coraveru
+INCLUDE = my.h
 
-FILE = ../../src/game.c
+all:	$(LIB)
 
-INCLUDE	=	-I../../include -L. -lmy
-
-FLAG =	-lcsfml-graphics -lcsfml-system -lcsfml-window -lcsfml-audio
-
-all:	$(NAME) COMPILE
-
-$(NAME):	$(OBJ)
-	ar rc $(NAME) $(OBJ)
-
-COMPILE:
-	gcc -o $(BIN) $(FILE) $(INCLUDE) $(FLAG)
+$(LIB):	$(OBJ)
+	ar rc $(LIB) $(OBJ)
+	cp $(LIB) ../
+	cp $(INCLUDE) ../../include/
 
 clean:
 	rm -f $(OBJ)
 
-fclean:	clean
-	rm -f $(NAME)
-	rm -f $(BIN)
+fclean: clean
+	rm -f ../$(LIB) $(LIB)
+	rm -f ../../include/$(INCLUDE)
 
-re:	fclean all
+re: fclean all

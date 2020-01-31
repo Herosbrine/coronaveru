@@ -1,4 +1,4 @@
-#include "../header/structure.h"
+#include "structure.h"
 
 void event_gestion(data_t *data)
 {

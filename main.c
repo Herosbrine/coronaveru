@@ -1,5 +1,5 @@
-#include "../header/structure.h"
-#include "../header/game.h"
+#include "structure.h"
+#include "game.h"
 
 void game(data_t *data)
 {

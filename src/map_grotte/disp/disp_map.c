@@ -1,4 +1,4 @@
-#include "../../../header/structure.h"
+#include "structure.h"
 
 void disp_map(data_t *data)
 {

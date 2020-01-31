@@ -5,7 +5,10 @@
 ** create a window
 */
 
-#include "../../header/structure.h"
+#include <SFML/Graphics/RenderWindow.h>
+#include <SFML/Graphics.h>
+#include <SFML/Window.h>
+#include <SFML/Config.h>
 
 sfRenderWindow *create_window(void)
 {

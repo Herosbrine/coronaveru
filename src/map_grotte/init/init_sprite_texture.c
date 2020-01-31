@@ -1,7 +1,5 @@
 #include "structure.h"
 
-
-
 void init_map_grotte_sprite_texture(data_t *data)
 {
     init_texture(data);

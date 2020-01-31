@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2019
+** CORONAVIRUS
+** File description:
+** ALL MACROS
+*/
+
 #ifndef MACRO_H
 #define MACRO_H
 

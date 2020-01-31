@@ -1,19 +1,36 @@
 ##
 ## EPITECH PROJECT, 2019
-## makefile
+## Makefile
 ## File description:
-## compile makefile 2
+## for CORONAVIRUS
 ##
 
-all:	COMPILE
+SRC	=	main.c \
+		src/init_variables.c \
+		src/event_gestion.c \
+		src/map_grotte/init/init_sprite_texture.c \
+		src/map_grotte/disp/disp_map.c \
+		src/map_grotte/map_grotte.c \
 
-COMPILE:
-	make -C ./lib/my
+FLAGS =-I./include
+
+LIB =-lmy -L./lib/my
+
+NAME = coronavirus
+
+all:	$(NAME)
+
+$(NAME):	$(OBJ)
+	make -C ./lib/my/
+	gcc $(FLAGS) -o $(NAME) $(SRC) $(LIB) -lcsfml-system -lcsfml-window -lcsfml-graphics -lcsfml-audio
+
+debug:
+	gcc $(FLAGS) -g3 $(SRC) $(LIB)
 
 clean:
 	make clean -C ./lib/my/
+	rm -f $(OBJ)
 
-fclean:	clean
+fclean: clean
 	make fclean -C ./lib/my/
-
-re:	fclean all
+	rm -f $(NAME)

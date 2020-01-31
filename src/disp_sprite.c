@@ -1,5 +1,5 @@
-#include "../header/structure.h"
-#include "../header/map_grotte.h"
+#include "structure.h"
+#include "map_grotte.h"
 
 void disp_sprite(data)
 {
