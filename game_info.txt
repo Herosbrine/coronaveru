@@ -1,0 +1,10 @@
+Scenario du début de jeu :
+
+-> La terre est en danger ! Un virus mystérieux a frappé la terre en début décembre !
+-> Il ne reste désormais plus que 150 millions de survivants sur terre
+-> Nous avons découvert que ce virus est né dans une grotte de chauffe souris
+-> Nous avons de votre aide pour sauver la planète, pour celà vous allez retourner dans le passé
+-> Le but est donc d'aller dans cette grotte et eliminer tout les chauffes souris !
+-> Attention ! S'il reste des chauffes souris, le sort du monde sera menacé !
+-> Nous vous enverrons des anti dotes qui permettront de soigner les humains infecté
+-> Bon courage agents Jean-Mouloude et Abdel-Kader !

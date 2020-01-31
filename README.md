@@ -1,2 +1,0 @@
-# coronaveru
-projet game jam
