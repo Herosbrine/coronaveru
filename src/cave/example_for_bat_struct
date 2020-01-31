@@ -1,10 +1,10 @@
 
 float *initialize_util(float *util)
 {
-    POS_X_DUCK = 1;
-    POS_X_DUCK1 = 1600;
-    POS_Y_DUCK = random_a_b();
-    POS_Y_DUCK1 = random_a_b1();
+    POS_X_DUCK = 1; //have to be out of range
+    POS_X_DUCK1 = 1600; //have to be out of range
+    POS_Y_DUCK = random_a_b(); //only need to generate a y point
+    POS_Y_DUCK1 = random_a_b1(); //only y
     HIT = 0;
     SCORE = 0;
     SPEED = 1;
