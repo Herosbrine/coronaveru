@@ -12,6 +12,10 @@ void display_game(data_t *data)
 {
     sfRenderWindow_clear(data->window, sfBlack);
     sfRenderWindow_drawSprite(data->window, data->s_map, NULL);
+    for (int i = 0; i < SOINS_LIST; i++){
+        if (data->soins_list[i].active == ON)
+            sfRenderWindow_drawSprite(data->window, data->soins_list[i].sprite, NULL);
+    }
     for (int i = 0; i < data->number_of_bots; i++)
         sfRenderWindow_drawSprite(data->window, data->bot_list[i].sprite, NULL);
     if (data->players_list[0].pos_y >= data->players_list[1].pos_y){
@@ -378,6 +382,19 @@ void game_instruction(data_t *data)
 {
     do_begin_animation(data);
     // BOTS //
+    if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->soin_generator)) > MILLISECOND_PER_SOIN){
+        for (int i = 0; i < SOINS_LIST; i++){
+            if (data->soins_list[i].active == OFF && data->soin_active < LIMIT_SOIN){
+                data->soins_list[i].pos_x = random_number(MIN_X - 1, MAX_X);
+                data->soins_list[i].pos_y = random_number(MIN_Y - 1, MAX_Y);
+                data->soins_list[i].active = ON;
+                data->soin_active++;
+                sfSprite_setPosition(data->soins_list[i].sprite, (sfVector2f) {data->soins_list[i].pos_x, data->soins_list[i].pos_y});
+                sfClock_restart(data->soin_generator);
+                break;
+            }
+        }
+    }
     if (data->begin_animation == 0){
         for (int i = 0; i < data->number_of_bots; i++){
             if (data->bot_list[i].change_direction < data->bot_list[i].counter_ch_dir){
@@ -749,6 +766,12 @@ void game_instruction(data_t *data)
 
 void game_loop(data_t *data)
 {
+    sfSoundBuffer *sbang;
+    sbang = sfSoundBuffer_createFromFile("sound/horrreur.ogg");
+    sfSound *bang;
+    bang = sfSound_create();
+    sfSound_setBuffer(bang, sbang);
+    sfSound_play(bang);
     while (sfRenderWindow_isOpen(data->window)){
         events_handling(data);
         game_instruction(data);
