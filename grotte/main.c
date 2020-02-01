@@ -11,6 +11,7 @@
 void game(data_t *data)
 {
     init_variables(data);
+    intro(data);
     srand(time(NULL));
     while (sfRenderWindow_isOpen(data->window)){
         event_gestion(data);

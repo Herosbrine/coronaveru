@@ -16,5 +16,6 @@ void display_sprite(data_t *data);
 void init_grotte_layer(data_t *data);
 void game_instruction(data_t *data);
 void init_scope(data_t *data);
+void intro(data_t *data);
 
 #endif

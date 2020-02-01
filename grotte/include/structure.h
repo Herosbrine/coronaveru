@@ -14,6 +14,7 @@
 #include <SFML/Config.h>
 #include <time.h>
 #include <stdlib.h>
+#include <SFML/Audio.h>
 
 typedef struct texture_s
 {
