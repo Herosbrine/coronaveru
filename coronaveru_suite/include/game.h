@@ -56,6 +56,13 @@
 /* OTHERS */
 #define SOINS_LIST 10
 
+typedef struct exit_s
+{
+    sfSprite *leave;
+    sfTexture *leave_s;
+    int pos_x;
+    int pos_y
+}exit_t;
 typedef struct textures_s
 {
     sfTexture *soin;
@@ -145,6 +152,7 @@ typedef struct data_s
     text_t text;
     sound_buffer_t sound_buffer;
     sound_t sound;
+    exit_t exit;
 }data_t;
 
 /* INITIALIZE GAME */
