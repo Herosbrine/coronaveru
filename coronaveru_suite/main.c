@@ -16,6 +16,14 @@ void display_game(data_t *data)
         if (data->soins_list[i].active == ON)
             sfRenderWindow_drawSprite(data->window, data->soins_list[i].sprite, NULL);
     }
+    sfSprite_setPosition(data->exit.leave, (sfVector2f){1857, 10});
+    sfRenderWindow_drawSprite(data->window, data->exit.leave, NULL);
+    if (data->event.mouseButton.button == sfMouseLeft) {
+        if (data->event.mouseButton.x > 1840 && data->event.mouseButton.y > 0
+            && data->event.mouseButton.x < 1920 && data->event.mouseButton.y < 81)
+            exit (0);
+    }
+        // Here is where it checks if the mouse is inside the rectangle / sprite.
     for (int i = 0; i < data->number_of_bots; i++)
         sfRenderWindow_drawSprite(data->window, data->bot_list[i].sprite, NULL);
     if (data->players_list[0].pos_y >= data->players_list[1].pos_y){
@@ -801,6 +809,11 @@ void game_loop(data_t *data)
 {
     sfSound_play(data->sound.horror);
     sfSound_setLoop(data->sound.horror, sfTrue);
+
+    data->exit.leave_s = sfTexture_createFromFile("/home/herosbrine/coronaveru/coronaveru_suite/img/exit_game.png", NULL);
+    data->exit.leave = sfSprite_create();
+    sfSprite_setTexture(data->exit.leave, data->exit.leave_s, 0);
+
     while (sfRenderWindow_isOpen(data->window)){
         events_handling(data);
         game_instruction(data);
