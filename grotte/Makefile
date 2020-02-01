@@ -15,6 +15,8 @@ SRC	=	main.c \
 		src/display_sprite.c \
 		src/map_grotte/init/init_grotte_layer.c \
 		src/map_grotte/move/move_map_grotte.c \
+		src/chauffe_souris/init/init_chauffe_souris_sp_t.c \
+		src/chauffe_souris/animation_left_dir/animation_left_dir.c \
 
 FLAGS =-I./include
 

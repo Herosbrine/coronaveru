@@ -1,5 +1,23 @@
 #include "../include/structure.h"
 #include "../include/game.h"
+#include <SFML/Graphics.h>
+#include <SFML/System.h>
+#include <SFML/Audio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <SFML/System/InputStream.h>
+#include <SFML/System/Time.h>
+#include <stddef.h>
+#include <SFML/Graphics/Glyph.h>
+#include <SFML/System/Export.h>
+#include <SFML/System/Clock.h>
+#include <SFML/System/Types.h>
+#include <SFML/Window/Event.h>
+#include <SFML/Window/Export.h>
+#include <SFML/Window/Context.h>
+#include <SFML/Window.h>
+#include <SFML/System/Clock.h>
 
 void intro()
 {
@@ -62,15 +80,20 @@ void intro()
      stext9 = sfSprite_create();
      sfSprite_setTexture(stext9, ttext9, 0);
 
-     sfTexture *ttext10;
-     ttext10 = sfTexture_createFromFile("intrigue_text/text_10.png", NULL);
-     sfSprite *stext10;
-     stext10 = sfSprite_create();
-     sfSprite_setTexture(stext10, ttext10, 0);
+    sfTexture *ttext10;
+    ttext10 = sfTexture_createFromFile("intrigue_text/text_10.png", NULL);
+    sfSprite *stext10;
+    stext10 = sfSprite_create();
+    sfSprite_setTexture(stext10, ttext10, 0);
 
-     sfTime time;
-     sfClock *clock = sfClock_create();
-
+    sfTime time;
+    sfClock *clock = sfClock_create();
+    sfSoundBuffer *sbang;
+    sbang = sfSoundBuffer_createFromFile("sound/bo1.ogg");
+    sfSound *bang;
+    bang = sfSound_create();
+    sfSound_setBuffer(bang, sbang);
+    sfSound_play(bang);
      while (sfRenderWindow_isOpen(window)) {
         sfEvent event;
         while (sfRenderWindow_pollEvent(window, &event)) {
@@ -99,6 +122,10 @@ void intro()
                sfRenderWindow_drawSprite(window, stext9, NULL);
         else if (sfTime_asSeconds(time) < 33)
                sfRenderWindow_drawSprite(window, stext10, NULL);
+        else if (sfTime_asSeconds(time) > 36) {
+              sfSound_destroy(bang);
+              sfSoundBuffer_destroy(sbang);
+        }
         sfRenderWindow_display(window);
      }
      sfRenderWindow_destroy(window);
