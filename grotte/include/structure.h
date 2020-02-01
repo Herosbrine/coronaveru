@@ -13,9 +13,6 @@
 #include <SFML/Window.h>
 #include <SFML/Config.h>
 #include <time.h>
-#include <stdlib.h>
-
-
 
 typedef struct texture_s
 {
@@ -23,6 +20,7 @@ typedef struct texture_s
     sfTexture *layer_a;
     sfTexture *layer_b;
     sfTexture *layer_c;
+    sfTexture *chauffe_souris;
 } texture_t;
 
 typedef struct sprite_grotte_s
@@ -46,12 +44,21 @@ typedef struct map_grotte_pos_s
     sfVector2f layer_c_next;
 } map_grotte_pos_t;
 
+typedef struct chauffe_souris_s
+{
+    sfSprite *sprite;
+    sfIntRect rect;
+    sfVector2f pos;
+    sfClock *clock;
+} chauffe_souris_t;
+
 typedef struct data_s
 {
     sfRenderWindow *window;
     texture_t texture;
     sprite_grotte_t sprite_grotte;
     map_grotte_pos_t map_grotte_pos;
+    chauffe_souris_t *chauffe_souris_tab;
 } data_t;
 
 #endif
