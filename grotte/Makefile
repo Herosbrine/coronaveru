@@ -16,7 +16,13 @@ SRC	=	main.c \
 		src/map_grotte/init/init_grotte_layer.c \
 		src/map_grotte/move/move_map_grotte.c \
 		src/chauffe_souris/init/init_chauffe_souris_sp_t.c \
-		src/chauffe_souris/animation_left_dir/animation_left_dir.c \
+		src/chauffe_souris/animation_chauffe_souris/animation_left_dir.c \
+		src/chauffe_souris/animation_chauffe_souris/animation_right_dir.c \
+		src/chauffe_souris/animation_chauffe_souris/animation_chauffe_souris.c \
+		src/chauffe_souris/init/init_chauffe_souris_pos.c \
+		src/chauffe_souris/move_chauffe_souris/move_chauffe_souris.c \
+		src/collision/collision.c \
+		src/bat_die/bat_die.c \
 
 FLAGS =-I./include
 

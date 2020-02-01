@@ -17,8 +17,9 @@ sfRenderWindow *create_window(void)
 
     video_mode.width = 1920;
     video_mode.height = 1080;
-    video_mode.bitsPerPixel = 64;
+    video_mode.bitsPerPixel = 32;
     window = sfRenderWindow_create(video_mode,
     "CORONAVERU", sfFullscreen, NULL);
+    sfRenderWindow_setFramerateLimit(window, 60);
     return (window);
 }
