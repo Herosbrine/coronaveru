@@ -143,7 +143,7 @@ void do_begin_animation(data_t *data)
     // GO UP //
     if (data->players_list[0].pos_y > 800 && data->animation_number == 1){
         // PLAYER 1 //
-        data->players_list[1].pos_y -= 2;
+        data->players_list[1].pos_y -= SPEED_PLAYER_TWO;
         sfSprite_setPosition(data->players_list[1].sprite, (sfVector2f) {data->players_list[1].pos_x, data->players_list[1].pos_y});
         if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[1].clock)) > 600)
             sfClock_restart(data->players_list[1].clock);
@@ -172,7 +172,7 @@ void do_begin_animation(data_t *data)
             sfSprite_setTextureRect(data->players_list[1].sprite, data->players_list[1].rect);
         }
         // PLAYER 2 //
-        data->players_list[0].pos_y -= 2;
+        data->players_list[0].pos_y -= SPEED_PLAYER_TWO;
         sfSprite_setPosition(data->players_list[0].sprite, (sfVector2f) {data->players_list[0].pos_x, data->players_list[0].pos_y});
         if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[0].clock)) > 600)
             sfClock_restart(data->players_list[0].clock);
@@ -206,7 +206,7 @@ void do_begin_animation(data_t *data)
             data->animation_number = 2;
     }
     if (data->players_list[0].pos_x < 1200 && data->animation_number == 2){
-        data->players_list[0].pos_x += 2;
+        data->players_list[0].pos_x += SPEED_PLAYER_ONE;
         sfSprite_setPosition(data->players_list[0].sprite, (sfVector2f) {data->players_list[0].pos_x, data->players_list[0].pos_y});
         if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[0].clock)) > 600)
             sfClock_restart(data->players_list[0].clock);
@@ -234,7 +234,7 @@ void do_begin_animation(data_t *data)
             data->players_list[0].rect.width = 30;
             sfSprite_setTextureRect(data->players_list[0].sprite, data->players_list[0].rect);
         }
-        data->players_list[1].pos_x -= 2;
+        data->players_list[1].pos_x -= SPEED_PLAYER_TWO;
         sfSprite_setPosition(data->players_list[1].sprite, (sfVector2f) {data->players_list[1].pos_x, data->players_list[1].pos_y});
         if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[1].clock)) > 600)
             sfClock_restart(data->players_list[1].clock);
@@ -269,7 +269,7 @@ void do_begin_animation(data_t *data)
             data->animation_number = 3;
     }
     if (data->players_list[0].pos_y < 885 && data->animation_number == 3){
-        data->players_list[0].pos_y += 2;
+        data->players_list[0].pos_y += SPEED_PLAYER_ONE;
         sfSprite_setPosition(data->players_list[0].sprite, (sfVector2f) {data->players_list[0].pos_x, data->players_list[0].pos_y});
         if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[0].clock)) > 600)
             sfClock_restart(data->players_list[0].clock);
@@ -297,7 +297,7 @@ void do_begin_animation(data_t *data)
             data->players_list[0].rect.width = 38;
             sfSprite_setTextureRect(data->players_list[0].sprite, data->players_list[0].rect);
         }
-        data->players_list[1].pos_y += 2;
+        data->players_list[1].pos_y += SPEED_PLAYER_TWO;
         sfSprite_setPosition(data->players_list[1].sprite, (sfVector2f) {data->players_list[1].pos_x, data->players_list[1].pos_y});
         if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[1].clock)) > 600)
             sfClock_restart(data->players_list[1].clock);
@@ -344,13 +344,96 @@ void do_begin_animation(data_t *data)
     }
 }
 
+void do_animation_bot(data_t *data, int w1, int h1, int l1, int t1, int w2, int h2, int l2, int t2, int w3, int h3, int l3, int t3, int i)
+{
+    if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->bot_list[i].clock)) > 600)
+        sfClock_restart(data->bot_list[i].clock);
+    if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->bot_list[i].clock)) > 400
+    && sfTime_asMilliseconds(sfClock_getElapsedTime(data->bot_list[i].clock)) <= 600){
+        data->bot_list[i].rect.left = l3;
+        data->bot_list[i].rect.top = t3;
+        data->bot_list[i].rect.height = h3;
+        data->bot_list[i].rect.width = w3;
+        sfSprite_setTextureRect(data->bot_list[i].sprite, data->bot_list[i].rect);
+    }
+    if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->bot_list[1].clock)) > 200
+    && sfTime_asMilliseconds(sfClock_getElapsedTime(data->bot_list[1].clock)) <= 400){
+        data->bot_list[i].rect.left = l2;
+        data->bot_list[i].rect.top = t2;
+        data->bot_list[i].rect.height = h2;
+        data->bot_list[i].rect.width = w2;
+        sfSprite_setTextureRect(data->bot_list[i].sprite, data->bot_list[i].rect);
+    }
+    if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->bot_list[i].clock)) > 0
+    && sfTime_asMilliseconds(sfClock_getElapsedTime(data->bot_list[i].clock)) <= 200){
+        data->bot_list[i].rect.left = l1;
+        data->bot_list[i].rect.top = t1;
+        data->bot_list[i].rect.height = h1;
+        data->bot_list[i].rect.width = w1;
+        sfSprite_setTextureRect(data->bot_list[i].sprite, data->bot_list[i].rect);
+    }
+}
+
 void game_instruction(data_t *data)
 {
     do_begin_animation(data);
+    // BOTS //
+    if (data->begin_animation == 0){
+        for (int i = 0; i < data->number_of_bots; i++){
+            if (data->bot_list[i].direction == DOWN && data->bot_list[i].pos_y < MAX_Y){
+                data->bot_list[i].pos_y += data->bot_list[i].speed;
+                sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
+                if (data->bot_list[i].id == 1)
+                    do_animation_bot(data, 33, 74, 10, 5, 34, 74, 62, 4, 35, 74, 115, 5, i);
+                if (data->bot_list[i].id == 2)
+                    do_animation_bot(data, 35, 74, 168, 5, 36, 76, 219, 4, 37, 75, 272, 5, i);
+                if (data->bot_list[i].id == 3)
+                    do_animation_bot(data, 42, 70, 323, 9, 41, 71, 376, 8, 42, 70, 430, 9, i);
+                if (data->bot_list[i].id == 4)
+                    do_animation_bot(data, 34, 74, 486, 4, 33, 75, 539, 4, 33, 74, 592, 5, i);
+            }
+            if (data->bot_list[i].direction == LEFT && data->bot_list[i].pos_x > MIN_X){
+                data->bot_list[i].pos_x -= data->bot_list[i].speed;
+                sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
+                if (data->bot_list[i].id == 1)
+                    do_animation_bot(data, 46, 74, 7, 85, 45, 76, 60, 83, 44, 74, 113, 85, i);
+                if (data->bot_list[i].id == 2)
+                    do_animation_bot(data, 45, 77, 167, 82, 43, 77, 220, 82, 42, 76, 273, 83, i);
+                if (data->bot_list[i].id == 3)
+                    do_animation_bot(data, 40, 72, 327, 87, 39, 73, 379, 86, 39, 72, 431, 88, i);
+                if (data->bot_list[i].id == 4)
+                    do_animation_bot(data, 45, 77, 484, 81, 43, 77, 537, 81, 42, 76, 590, 82, i);
+            }
+            if (data->bot_list[i].direction == RIGHT && data->bot_list[i].pos_x < MAX_X){
+                data->bot_list[i].pos_x += data->bot_list[i].speed;
+                sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
+                if (data->bot_list[i].id == 1)
+                    do_animation_bot(data, 46, 74, 3, 164, 45, 75, 56, 163, 43, 74, 110, 164, i);
+                if (data->bot_list[i].id == 2)
+                    do_animation_bot(data, 44, 77, 160, 161, 43, 77, 214, 161, 42, 75, 268, 164, i);
+                if (data->bot_list[i].id == 3)
+                    do_animation_bot(data, 39, 72, 323, 166, 39, 73, 376, 165, 39, 72, 429, 166, i);
+                if (data->bot_list[i].id == 4)
+                    do_animation_bot(data, 45, 77, 477, 160, 44, 77, 532, 161, 42, 76, 585, 162, i);
+            }
+            if (data->bot_list[i].direction == UP && data->bot_list[i].pos_y > MIN_Y){
+                data->bot_list[i].pos_y -= data->bot_list[i].speed;
+                sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
+                if (data->bot_list[i].id == 1)
+                    do_animation_bot(data, 34, 73, 11, 244, 34, 74, 63, 243, 34, 73, 116, 244, i);
+                if (data->bot_list[i].id == 2)
+                    do_animation_bot(data, 36, 75, 169, 242, 37, 76, 222, 241, 36, 75, 275, 242, i);
+                if (data->bot_list[i].id == 3)
+                    do_animation_bot(data, 41, 72, 323, 246, 42, 73, 377, 244, 40, 72, 430, 245, i);
+                if (data->bot_list[i].id == 4)
+                    do_animation_bot(data, 33, 75, 487, 241, 33, 76, 539, 240, 32, 75, 592, 241, i);
+            }
+        }
+    }
     // PLAYER 1 //
     if (data->players_list[0].animation == ON && data->begin_animation == 0){
         if (data->players_list[0].direction == LEFT && data->players_list[0].pos_x > MIN_X){
-            data->players_list[0].pos_x -= 2;
+            data->players_list[0].pos_x -= SPEED_PLAYER_TWO;
             sfSprite_setPosition(data->players_list[0].sprite, (sfVector2f) {data->players_list[0].pos_x, data->players_list[0].pos_y});
             if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[0].clock)) > 600)
                 sfClock_restart(data->players_list[0].clock);
@@ -381,7 +464,7 @@ void game_instruction(data_t *data)
             }
         }
         if (data->players_list[0].direction == RIGHT && data->players_list[0].pos_x < MAX_X){
-            data->players_list[0].pos_x += 2;
+            data->players_list[0].pos_x += SPEED_PLAYER_ONE;
             sfSprite_setPosition(data->players_list[0].sprite, (sfVector2f) {data->players_list[0].pos_x, data->players_list[0].pos_y});
             if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[0].clock)) > 600)
                 sfClock_restart(data->players_list[0].clock);
@@ -412,7 +495,7 @@ void game_instruction(data_t *data)
             }
         }
         if (data->players_list[0].direction == DOWN && data->players_list[0].pos_y < MAX_Y){
-            data->players_list[0].pos_y += 2;
+            data->players_list[0].pos_y += SPEED_PLAYER_ONE;
             sfSprite_setPosition(data->players_list[0].sprite, (sfVector2f) {data->players_list[0].pos_x, data->players_list[0].pos_y});
             if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[0].clock)) > 600)
                 sfClock_restart(data->players_list[0].clock);
@@ -442,7 +525,7 @@ void game_instruction(data_t *data)
             }
         }
         if (data->players_list[0].direction == UP && data->players_list[0].pos_y > MIN_Y){
-            data->players_list[0].pos_y -= 2;
+            data->players_list[0].pos_y -= SPEED_PLAYER_TWO;
             sfSprite_setPosition(data->players_list[0].sprite, (sfVector2f) {data->players_list[0].pos_x, data->players_list[0].pos_y});
             if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[0].clock)) > 600)
                 sfClock_restart(data->players_list[0].clock);
@@ -475,7 +558,7 @@ void game_instruction(data_t *data)
     // PLAYER 2 //
     if (data->players_list[1].animation == ON && data->begin_animation == 0){
         if (data->players_list[1].direction == LEFT && data->players_list[1].pos_x > 42){
-            data->players_list[1].pos_x -= 2;
+            data->players_list[1].pos_x -= SPEED_PLAYER_TWO;
             sfSprite_setPosition(data->players_list[1].sprite, (sfVector2f) {data->players_list[1].pos_x, data->players_list[1].pos_y});
             if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[1].clock)) > 600)
                 sfClock_restart(data->players_list[1].clock);
@@ -506,7 +589,7 @@ void game_instruction(data_t *data)
             }
         }
         if (data->players_list[1].direction == RIGHT && data->players_list[1].pos_x < 1838){
-            data->players_list[1].pos_x += 2;
+            data->players_list[1].pos_x += SPEED_PLAYER_TWO;
             sfSprite_setPosition(data->players_list[1].sprite, (sfVector2f) {data->players_list[1].pos_x, data->players_list[1].pos_y});
             if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[1].clock)) > 600)
                 sfClock_restart(data->players_list[1].clock);
@@ -537,7 +620,7 @@ void game_instruction(data_t *data)
             }
         }
         if (data->players_list[1].direction == DOWN && data->players_list[1].pos_y < 958){
-            data->players_list[1].pos_y += 2;
+            data->players_list[1].pos_y += SPEED_PLAYER_TWO;
             sfSprite_setPosition(data->players_list[1].sprite, (sfVector2f) {data->players_list[1].pos_x, data->players_list[1].pos_y});
             if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[1].clock)) > 600)
                 sfClock_restart(data->players_list[1].clock);
@@ -568,7 +651,7 @@ void game_instruction(data_t *data)
         }
         // UP //
         if (data->players_list[1].direction == UP && data->players_list[1].pos_y > 128){
-            data->players_list[1].pos_y -= 2;
+            data->players_list[1].pos_y -= SPEED_PLAYER_TWO;
             sfSprite_setPosition(data->players_list[1].sprite, (sfVector2f) {data->players_list[1].pos_x, data->players_list[1].pos_y});
             if (sfTime_asMilliseconds(sfClock_getElapsedTime(data->players_list[1].clock)) > 600)
                 sfClock_restart(data->players_list[1].clock);
@@ -602,7 +685,6 @@ void game_instruction(data_t *data)
 
 void game_loop(data_t *data)
 {
-    srand(time(NULL));
     while (sfRenderWindow_isOpen(data->window)){
         events_handling(data);
         game_instruction(data);
@@ -614,6 +696,7 @@ int main(int ac, char **av)
 {
     data_t data;
 
+    srand(time(NULL));
     initialize_data(&data);
     game_loop(&data);
     return (0);

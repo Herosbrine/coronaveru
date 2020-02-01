@@ -17,7 +17,7 @@ sfRenderWindow *create_window(void)
     window = sfRenderWindow_create(video_mode, "CORONAVIRUS",
     sfFullscreen | sfClose, NULL);
     sfRenderWindow_setKeyRepeatEnabled(window, sfTrue);
-    sfRenderWindow_setFramerateLimit(window, 30);
+    sfRenderWindow_setFramerateLimit(window, 60);
     return (window);
 }
 
@@ -42,6 +42,34 @@ int random_number(int nb1, int nb2)
     return (a);
 }
 
+void initialize_bot_id(data_t *data, int w1, int h1, int l1, int t1, int w2, int h2, int l2, int t2, int w3, int h3, int l3, int t3, int w4, int h4, int l4, int t4, int i)
+{
+    if (data->bot_list[i].direction == DOWN){
+        data->bot_list[i].rect.left = l1;
+        data->bot_list[i].rect.top = t1;
+        data->bot_list[i].rect.height = h1;
+        data->bot_list[i].rect.width = w1;
+    }
+    if (data->bot_list[i].direction == LEFT){
+        data->bot_list[i].rect.left = l2;
+        data->bot_list[i].rect.top = t2;
+        data->bot_list[i].rect.height = h2;
+        data->bot_list[i].rect.width = w2;
+    }
+    if (data->bot_list[i].direction == RIGHT){
+        data->bot_list[i].rect.left = l3;
+        data->bot_list[i].rect.top = t3;
+        data->bot_list[i].rect.height = h3;
+        data->bot_list[i].rect.width = w3;
+    }
+    if (data->bot_list[i].direction == UP){
+        data->bot_list[i].rect.left = l4;
+        data->bot_list[i].rect.top = t4;
+        data->bot_list[i].rect.height = h4;
+        data->bot_list[i].rect.width = w4;
+    }
+}
+
 void initialize_bots(data_t *data)
 {
     data->number_of_bots = NUMBER_OF_BOTS;
@@ -56,31 +84,17 @@ void initialize_bots(data_t *data)
         data->bot_list[i].direction = random_number(0, NUMBER_OF_DIRECTION);
         data->bot_list[i].pos_x = random_number(MIN_X - 1, MAX_X);
         data->bot_list[i].pos_y = random_number(MIN_Y - 1, MAX_Y);
+        data->bot_list[i].speed = random_number(SPEED_BOT_MIN, SPEED_BOT_MAX);
+        data->bot_list[i].change_direction = random_number(MIN_CH_DIR, MAX_CH_DIR);
         sfSprite_setTexture(data->bot_list[i].sprite, data->textures.bot, sfTrue);
-        if (data->bot_list[i].direction == LEFT && data->bot_list[i].id == 1){
-            data->bot_list[i].rect.left = 166;
-            data->bot_list[i].rect.top = 80;
-            data->bot_list[i].rect.height = 80;
-            data->bot_list[i].rect.width = 46;
-        }
-        if (data->bot_list[i].direction == RIGHT && data->bot_list[i].id == 1){
-            data->bot_list[i].rect.left = 160;
-            data->bot_list[i].rect.top = 160;
-            data->bot_list[i].rect.height = 79;
-            data->bot_list[i].rect.width = 45;
-        }
-        if (data->bot_list[i].direction == UP && data->bot_list[i].id == 1){
-            data->bot_list[i].rect.left = 168;
-            data->bot_list[i].rect.top = 241;
-            data->bot_list[i].rect.height = 77;
-            data->bot_list[i].rect.width = 37;
-        }
-        if (data->bot_list[i].direction == DOWN && data->bot_list[i].id == 1){
-            data->bot_list[i].rect.left = 167;
-            data->bot_list[i].rect.top = 4;
-            data->bot_list[i].rect.height = 76;
-            data->bot_list[i].rect.width = 35;
-        }
+        if (data->bot_list[i].id == 1)
+            initialize_bot_id(data, 34, 74, 62, 4, 45, 76, 60, 83, 45, 75, 56, 163, 34, 74, 63, 243, i);
+        if (data->bot_list[i].id == 2)
+            initialize_bot_id(data, 36, 76, 219, 4, 43, 77, 220, 82, 43, 77, 214, 161, 37, 76, 222, 241, i);
+        if (data->bot_list[i].id == 3)
+            initialize_bot_id(data, 41, 71, 376, 8, 39, 73, 379, 86, 39, 73, 376, 165, 42, 73, 377, 244, i);
+        if (data->bot_list[i].id == 4)
+            initialize_bot_id(data, 33, 75, 539, 4, 43, 77, 537, 81, 44, 77, 532, 161, 33, 76, 539, 240, i);
         sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
         sfSprite_setTextureRect(data->bot_list[i].sprite, data->bot_list[i].rect);
      }
