@@ -14,7 +14,7 @@
 void init_variables(data_t *data)
 {
     data->window = create_window();
-    sfRenderWindow_setMouseCursorVisible(data->window, sfTrue);
+    sfRenderWindow_setMouseCursorVisible(data->window, sfFalse);
     data->nbr_chf_souris = 18;
     data->nbr_total_bat = data->nbr_chf_souris;
     data->active_click = 0;
