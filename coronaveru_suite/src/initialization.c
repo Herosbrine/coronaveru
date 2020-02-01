@@ -30,6 +30,7 @@ void initialize_sounds(data_t *data)
 
 void initialize_data(data_t *data)
 {
+    data->wave = 1;
     data->sound_active = ON;
     data->animation_number = 1;
     data->begin_animation = ON;
@@ -42,6 +43,78 @@ void initialize_data(data_t *data)
     initialize_bots(data);
     initialize_soins(data);
     initialize_sounds(data);
+    initialize_text(data);
+    initialize_exit(data);
+}
+
+void initialize_text(data_t *data)
+{
+    wave_message(data);
+    wave_message_int(data);
+    player_antidote_1_msg(data);
+    player_antidote_2_msg(data);
+    player_antidote_1_int(data);
+    player_antidote_2_int(data);
+}
+
+void wave_message(data_t *data)
+{
+    data->text.wave_txt = sfText_create();
+    sfText_setFont(data->text.wave_txt, data->font);
+    sfText_setString(data->text.wave_txt, "WAVE :");
+    sfText_setColor(data->text.wave_txt, sfColor_fromRGBA(239, 216, 7, 120));
+    sfText_setCharacterSize(data->text.wave_txt, 70);
+    sfText_setPosition(data->text.wave_txt, (sfVector2f) {25, -5});
+}
+
+void wave_message_int(data_t *data)
+{
+    data->text.wave_int = sfText_create();
+    sfText_setFont(data->text.wave_int, data->font);
+    sfText_setString(data->text.wave_int, my_int_to_char(data->wave));
+    sfText_setColor(data->text.wave_int, sfColor_fromRGBA(239, 216, 7, 120));
+    sfText_setCharacterSize(data->text.wave_int, 70);
+    sfText_setPosition(data->text.wave_int, (sfVector2f) {210, -5});
+}
+
+void player_antidote_1_msg(data_t *data)
+{
+    data->text.antidote1_txt = sfText_create();
+    sfText_setFont(data->text.antidote1_txt, data->font);
+    sfText_setString(data->text.antidote1_txt, "ANTIDOTE :");
+    sfText_setColor(data->text.antidote1_txt, sfColor_fromRGBA(239, 216, 7, 120));
+    sfText_setCharacterSize(data->text.antidote1_txt, 70);
+    sfText_setPosition(data->text.antidote1_txt, (sfVector2f) {510, -5});
+}
+
+void player_antidote_1_int(data_t *data)
+{
+    data->text.antidote1_int = sfText_create();
+    sfText_setFont(data->text.antidote1_int, data->font);
+    sfText_setString(data->text.antidote1_int, my_int_to_char(data->players_list[0].nb_soin));
+    sfText_setColor(data->text.antidote1_int, sfColor_fromRGBA(239, 216, 7, 120));
+    sfText_setCharacterSize(data->text.antidote1_int, 70);
+    sfText_setPosition(data->text.antidote1_int, (sfVector2f) {775, -5});
+}
+
+void player_antidote_2_msg(data_t *data)
+{
+    data->text.antidote2_txt = sfText_create();
+    sfText_setFont(data->text.antidote2_txt, data->font);
+    sfText_setString(data->text.antidote2_txt, "ANTIDOTE :");
+    sfText_setColor(data->text.antidote2_txt, sfColor_fromRGBA(239, 216, 7, 120));
+    sfText_setCharacterSize(data->text.antidote2_txt, 70);
+    sfText_setPosition(data->text.antidote2_txt, (sfVector2f) {1010, -5});
+}
+
+void player_antidote_2_int(data_t *data)
+{
+    data->text.antidote2_int = sfText_create();
+    sfText_setFont(data->text.antidote2_int, data->font);
+    sfText_setString(data->text.antidote2_int, my_int_to_char(data->players_list[1].nb_soin));
+    sfText_setColor(data->text.antidote2_int, sfColor_fromRGBA(239, 216, 7, 120));
+    sfText_setCharacterSize(data->text.antidote2_int, 70);
+    sfText_setPosition(data->text.antidote2_int, (sfVector2f) {1275, -5});
 }
 
 int random_number(int nb1, int nb2)
@@ -132,6 +205,14 @@ void initialize_bots(data_t *data)
         sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
         sfSprite_setTextureRect(data->bot_list[i].sprite, data->bot_list[i].rect);
      }
+}
+
+void initialize_exit(data_t *data)
+{
+    data->textures.exit = sfTexture_createFromFile("img/exit_game.png", NULL);
+    data->exit_sprite = sfSprite_create();
+    sfSprite_setTexture(data->exit_sprite, data->textures.exit, sfTrue);
+    sfSprite_setPosition(data->exit_sprite, (sfVector2f) {1857, 10});
 }
 
 void initialize_players(data_t *data)

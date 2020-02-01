@@ -12,12 +12,26 @@ void display_game(data_t *data)
 {
     sfRenderWindow_clear(data->window, sfBlack);
     sfRenderWindow_drawSprite(data->window, data->s_map, NULL);
+    // TEXTS //
+    sfText_setString(data->text.antidote1_int, my_int_to_char(data->players_list[1].nb_soin));
+    sfText_setString(data->text.antidote2_int, my_int_to_char(data->players_list[0].nb_soin));
+    sfRenderWindow_drawText(data->window, data->text.antidote1_txt, NULL);
+    sfRenderWindow_drawText(data->window, data->text.antidote2_txt, NULL);
+    sfRenderWindow_drawText(data->window, data->text.antidote1_int, NULL);
+    sfRenderWindow_drawText(data->window, data->text.antidote2_int, NULL);
+    sfRenderWindow_drawText(data->window, data->text.wave_txt, NULL);
+    sfRenderWindow_drawText(data->window, data->text.wave_int, NULL);
+    // EXIT //
+    sfRenderWindow_drawSprite(data->window, data->exit_sprite, NULL);
+    // ANTIDOTE //
     for (int i = 0; i < SOINS_LIST; i++){
         if (data->soins_list[i].active == ON)
             sfRenderWindow_drawSprite(data->window, data->soins_list[i].sprite, NULL);
     }
+    // BOTS //
     for (int i = 0; i < data->number_of_bots; i++)
         sfRenderWindow_drawSprite(data->window, data->bot_list[i].sprite, NULL);
+    // PLAYERS //
     if (data->players_list[0].pos_y >= data->players_list[1].pos_y){
         sfRenderWindow_drawSprite(data->window, data->players_list[1].sprite, NULL);
         sfRenderWindow_drawSprite(data->window, data->players_list[0].sprite, NULL);
@@ -35,6 +49,9 @@ void events_handling(data_t *data)
         if (data->event.type == sfEvtClosed)
             sfRenderWindow_close(data->window);
         // PLAYER 1
+        if (data->event.mouseButton.x > 1840 && data->event.mouseButton.x < 1920
+        && data->event.mouseButton.y > 0 && data->event.mouseButton.y < 81)
+            exit (0);
         if (data->begin_animation == OFF){
             if (sfKeyboard_isKeyPressed(sfKeyDown) && data->players_list[0].direction != DOWN){
                 sfClock_restart(data->players_list[0].clock);
@@ -804,7 +821,6 @@ void game_loop(data_t *data)
     while (sfRenderWindow_isOpen(data->window)){
         events_handling(data);
         game_instruction(data);
-        printf("%d - %d\n", data->players_list[1].nb_soin, data->players_list[0].nb_soin);
         display_game(data);
     }
 }

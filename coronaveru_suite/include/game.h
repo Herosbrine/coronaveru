@@ -42,8 +42,8 @@
 #define MAX_X                 1838
 #define MIN_Y                 126
 #define MAX_Y                 958
-#define MILLISECOND_PER_SOIN  4000
-#define LIMIT_SOIN            6
+#define MILLISECOND_PER_SOIN  1000
+#define LIMIT_SOIN            10
 
 /* PLAYERS PARAMETER */
 #define SPEED_PLAYER_ONE      5
@@ -54,11 +54,12 @@
 #define MAX_CH_DIR            400
 
 /* OTHERS */
-#define SOINS_LIST 6
+#define SOINS_LIST 10
 
 typedef struct textures_s
 {
     sfTexture *soin;
+    sfTexture *exit;
     sfTexture *player_one;
     sfTexture *player_two;
     sfTexture *bot;
@@ -110,9 +111,20 @@ typedef struct sound_buffer_s
     sfSoundBuffer *horror;
 }sound_buffer_t;
 
+typedef struct text_s
+{
+    sfText *wave_txt;
+    sfText *wave_int;
+    sfText *antidote1_txt;
+    sfText *antidote1_int;
+    sfText *antidote2_txt;
+    sfText *antidote2_int;
+}text_t;
+
 typedef struct data_s
 {
     int sound_active;
+    int wave;
     sfRenderWindow *window;
     sfFont *font;
     sfClock *soin_generator;
@@ -122,6 +134,7 @@ typedef struct data_s
     int begin_animation;
     int animation_number;
     sfSprite *s_map;
+    sfSprite *exit_sprite;
     soins_t soins;
     soins_t *soins_list;
     bot_t bot;
@@ -129,6 +142,7 @@ typedef struct data_s
     textures_t textures;
     players_t players;
     players_t *players_list;
+    text_t text;
     sound_buffer_t sound_buffer;
     sound_t sound;
 }data_t;
