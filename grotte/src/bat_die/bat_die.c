@@ -13,6 +13,7 @@ void init_bat_die(data_t *data)
     data->texture.t_bat_die = sfTexture_createFromFile("image/blood.png", NULL);
     data->bat_die.sprite = sfSprite_create();
     sfSprite_setTexture(data->bat_die.sprite, data->texture.t_bat_die, 0);
+    sfSprite_setTextureRect(data->bat_die.sprite, (sfIntRect){104, 0, 123, 141});
     data->bat_die.clock = sfClock_create();
 }
 
@@ -63,7 +64,7 @@ void bat_die(data_t *data)
 {
     if (data->active_die == 1) {
         sfSprite_setPosition(data->bat_die.sprite, data->bat_die.pos);
-        animation_die(data);
+        //animation_die(data);
         sfRenderWindow_drawSprite(data->window, data->bat_die.sprite, 0);
     }
 }

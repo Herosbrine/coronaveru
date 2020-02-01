@@ -36,4 +36,5 @@ void display_sprite(data_t *data)
     }
     if (data->active_die == 1)
         bat_die(data);
+    sfRenderWindow_drawSprite(data->window, data->sprite_grotte.scope, 0);
 }

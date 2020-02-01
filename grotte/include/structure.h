@@ -24,6 +24,7 @@ typedef struct texture_s
     sfTexture *chauffe_souris_lft;
     sfTexture *chauffe_souris_rght;
     sfTexture *t_bat_die;
+    sfTexture *t_scope;
 } texture_t;
 
 typedef struct sprite_grotte_s
@@ -37,6 +38,7 @@ typedef struct sprite_grotte_s
     sfSprite *layer_c_next;
     sfSprite *chf_souris_left;
     sfSprite *chf_souris_rght;
+    sfSprite *scope;
 } sprite_grotte_t;
 
 typedef struct map_grotte_pos_s
@@ -74,6 +76,10 @@ typedef struct data_s
     int mouse_button_x;
     int mouse_button_y;
     int active_die;
+    int nbr_total_bat;
+    float mouse_move_x;
+    float mouse_move_y;
+    int last_bat_alive;
 } data_t;
 
 #endif

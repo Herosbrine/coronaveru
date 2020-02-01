@@ -11,8 +11,8 @@
 void collision(data_t *data)
 {
     for (int i = 0; i < data->nbr_chf_souris; i++) {
-        if (data->mouse_button_x >= CHF_SOURIS[i].pos.x && data->mouse_button_x <= CHF_SOURIS[i].pos.x + 148
-        && data->mouse_button_y >= CHF_SOURIS[i].pos.y && data->mouse_button_y <= CHF_SOURIS[i].pos.y + 120) {
+        if (data->mouse_button_x >= CHF_SOURIS[i].pos.x && data->mouse_button_x <= CHF_SOURIS[i].pos.x + 110
+        && data->mouse_button_y >= CHF_SOURIS[i].pos.y && data->mouse_button_y <= CHF_SOURIS[i].pos.y + 96) {
             data->active_die = 1;
             data->bat_die.pos.x = CHF_SOURIS[i].pos.x;
             data->bat_die.pos.y = CHF_SOURIS[i].pos.y;

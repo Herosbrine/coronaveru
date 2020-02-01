@@ -23,6 +23,7 @@ SRC	=	main.c \
 		src/chauffe_souris/move_chauffe_souris/move_chauffe_souris.c \
 		src/collision/collision.c \
 		src/bat_die/bat_die.c \
+		src/scope_bat.c \
 
 FLAGS =-I./include
 

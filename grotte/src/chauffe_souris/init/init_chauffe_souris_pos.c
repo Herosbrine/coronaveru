@@ -12,22 +12,34 @@
 void init_direction(data_t *data)
 {
     int nbr = 0;
-    const int MAX = 3;
+    const int MAX = 6;
     const int MIN = 1;
 
     for (int i = 0; i < data->nbr_chf_souris; i++) {
         nbr = rand() % (MAX - MIN) + MIN;
         if (nbr == 1) {
-            CHF_SOURIS[i].dir_x = 2;
+            CHF_SOURIS[i].dir_x = 4;
             CHF_SOURIS[i].dir_y = 2;
         }
         if (nbr == 2) {
             CHF_SOURIS[i].dir_x = 3;
-            CHF_SOURIS[i].dir_y = 1;
+            CHF_SOURIS[i].dir_y = 3;
         }
         if (nbr == 3) {
+            CHF_SOURIS[i].dir_x = 2;
+            CHF_SOURIS[i].dir_y = 4;
+        }
+        if (nbr == 4) {
+            CHF_SOURIS[i].dir_x = 5;
+            CHF_SOURIS[i].dir_y = 1;
+        }
+        if (nbr == 5) {
             CHF_SOURIS[i].dir_x = 1;
-            CHF_SOURIS[i].dir_y = 3;
+            CHF_SOURIS[i].dir_y = 5;
+        }
+        if (nbr == 6) {
+            CHF_SOURIS[i].dir_x = 2;
+            CHF_SOURIS[i].dir_y = 4;
         }
     }
 }

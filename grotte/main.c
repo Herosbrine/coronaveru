@@ -19,6 +19,11 @@ void game(data_t *data)
         display_sprite(data);
         sfRenderWindow_display(data->window);
     }
+    for (int i = 0; i < data->nbr_chf_souris; i++) {
+        if (data->chauffe_souris_tab[i].is_die == 0)
+            data->last_bat_alive += 1;
+    }
+    printf("total : %d\n", data->last_bat_alive);
 }
 
 int main(void)

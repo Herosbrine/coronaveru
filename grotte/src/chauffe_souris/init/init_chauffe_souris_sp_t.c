@@ -8,7 +8,7 @@
 #include "structure.h"
 #include "macro.h"
 
-void init_chauffe_souris_sp_t(data_t *data)
+void    init_chauffe_souris_sp_t(data_t *data)
 {
     data->chauffe_souris_tab = malloc(sizeof(chauffe_souris_t) * data->nbr_chf_souris);
     data->texture.chauffe_souris_lft = sfTexture_createFromFile("image/bat.png", NULL);
