@@ -14,7 +14,15 @@
 void init_variables(data_t *data)
 {
     data->window = create_window();
+    data->nbr_chf_souris = 18;
+    data->active_click = 0;
+    data->active_die = 0;
+    data->active_dir = 0;
     init_grotte_layer(data);
     init_map_grotte_sprite_texture(data);
     init_chauffe_souris_sp_t(data);
+    init_chauffe_souris_pos(data);
+    init_bat_die(data);
+    for (int i = 0; i < data->nbr_chf_souris; i++)
+        data->chauffe_souris_tab[i].is_die = 0;
 }

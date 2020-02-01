@@ -11,11 +11,13 @@
 
 void animation(data_t *data)
 {
-    animation_left(data);
+    animation_chauffe_souris(data);
 }
 
 void game_instruction(data_t *data)
 {
-    animation(data);
     map_grotte(data);
+    animation(data);
+    //move_chauffe_souris(data);
+    collision(data);
 }
