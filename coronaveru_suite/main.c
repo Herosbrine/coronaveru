@@ -766,6 +766,12 @@ void game_instruction(data_t *data)
 
 void game_loop(data_t *data)
 {
+    sfSoundBuffer *sbang;
+    sbang = sfSoundBuffer_createFromFile("sound/horrreur.ogg");
+    sfSound *bang;
+    bang = sfSound_create();
+    sfSound_setBuffer(bang, sbang);
+    sfSound_play(bang);
     while (sfRenderWindow_isOpen(data->window)){
         events_handling(data);
         game_instruction(data);
