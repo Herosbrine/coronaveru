@@ -75,7 +75,6 @@ void initialize_bots(data_t *data)
     data->number_of_bots = NUMBER_OF_BOTS;
     data->bot_list = malloc(sizeof(data->bot) * data->number_of_bots);
     data->textures.bot = sfTexture_createFromFile("img/women_bot.png", NULL);
-
     for (int i = 0; i < data->number_of_bots; i++){
         data->bot_list[i].sprite = sfSprite_create();
         data->bot_list[i].clock = sfClock_create();
@@ -95,11 +94,19 @@ void initialize_bots(data_t *data)
             initialize_bot_id(data, 41, 71, 376, 8, 39, 73, 379, 86, 39, 73, 376, 165, 42, 73, 377, 244, i);
         if (data->bot_list[i].id == 4)
             initialize_bot_id(data, 33, 75, 539, 4, 43, 77, 537, 81, 44, 77, 532, 161, 33, 76, 539, 240, i);
+        if (data->bot_list[i].id == 5)
+            initialize_bot_id(data, 38, 78, 61, 321, 37, 78, 61, 400, 36, 78, 62, 478, 39, 76, 61, 558, i);
+        if (data->bot_list[i].id == 6)
+            initialize_bot_id(data, 33, 77, 222, 321, 35, 77, 220, 400, 35, 76, 223, 481, 33, 75, 222, 560, i);
+        if (data->bot_list[i].id == 7)
+            initialize_bot_id(data, 32, 76, 381, 320, 30, 77, 383, 399, 30, 76, 382, 479, 33, 76, 381, 559, i);
+        if (data->bot_list[i].id == 8)
+            initialize_bot_id(data, 38, 77, 538, 319, 36, 78, 539, 398, 37, 78, 538, 477, 38, 77, 536, 557, i);
+        if (i < 3)
+            sfSprite_setColor(data->bot_list[i].sprite, sfColor_fromRGBA(255, 20, 20, 150));
         sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
         sfSprite_setTextureRect(data->bot_list[i].sprite, data->bot_list[i].rect);
      }
-     for (int i = 0; i < data->number_of_bots; i++)
-         printf("bot number : %d -> x : %d, y : %d\n", i + 1, data->bot_list[i].pos_x, data->bot_list[i].pos_y);
 }
 
 void initialize_players(data_t *data)

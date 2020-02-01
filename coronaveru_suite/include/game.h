@@ -29,11 +29,12 @@
 #define ON      1
 
 /* BOTS PARAMETERS */
-#define NUMBER_OF_BOTS        300
-#define NUMBER_OF_ID          4
+#define NUMBER_OF_BOTS        8
+#define BOTS_INFECTED         3
+#define NUMBER_OF_ID          8
 #define NUMBER_OF_DIRECTION   4
-#define SPEED_BOT_MIN         3
-#define SPEED_BOT_MAX         10
+#define SPEED_BOT_MIN         2
+#define SPEED_BOT_MAX         6
 
 /* MAP PARAMETERS */
 #define MIN_X                 42
@@ -71,6 +72,7 @@ typedef struct players_s
 typedef struct bot_s
 {
     int id;
+    int counter_ch_dir;
     int change_direction;
     int speed;
     int pos_x;

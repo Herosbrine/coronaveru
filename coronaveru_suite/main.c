@@ -381,6 +381,7 @@ void game_instruction(data_t *data)
     if (data->begin_animation == 0){
         for (int i = 0; i < data->number_of_bots; i++){
             if (data->bot_list[i].direction == DOWN && data->bot_list[i].pos_y < MAX_Y){
+                data->bot_list[i].counter_ch_dir += data->bot_list[i].speed;
                 data->bot_list[i].pos_y += data->bot_list[i].speed;
                 sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
                 if (data->bot_list[i].id == 1)
@@ -391,8 +392,17 @@ void game_instruction(data_t *data)
                     do_animation_bot(data, 42, 70, 323, 9, 41, 71, 376, 8, 42, 70, 430, 9, i);
                 if (data->bot_list[i].id == 4)
                     do_animation_bot(data, 34, 74, 486, 4, 33, 75, 539, 4, 33, 74, 592, 5, i);
+                if (data->bot_list[i].id == 5)
+                    do_animation_bot(data, 37, 77, 8, 322, 38, 78, 61, 321, 38, 77, 114, 321, i);
+                if (data->bot_list[i].id == 6)
+                    do_animation_bot(data, 34, 76, 169, 322, 33, 77, 222, 321, 34, 76, 275, 322, i);
+                if (data->bot_list[i].id == 7)
+                    do_animation_bot(data, 33, 75, 328, 321, 32, 76, 381, 320, 34, 75, 433, 321, i);
+                if (data->bot_list[i].id == 8)
+                    do_animation_bot(data, 38, 76, 484, 320, 38, 77, 538, 319, 36, 77, 591, 320, i);
             }
             if (data->bot_list[i].direction == LEFT && data->bot_list[i].pos_x > MIN_X){
+                data->bot_list[i].counter_ch_dir += data->bot_list[i].speed;
                 data->bot_list[i].pos_x -= data->bot_list[i].speed;
                 sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
                 if (data->bot_list[i].id == 1)
@@ -403,8 +413,17 @@ void game_instruction(data_t *data)
                     do_animation_bot(data, 40, 72, 327, 87, 39, 73, 379, 86, 39, 72, 431, 88, i);
                 if (data->bot_list[i].id == 4)
                     do_animation_bot(data, 45, 77, 484, 81, 43, 77, 537, 81, 42, 76, 590, 82, i);
+                if (data->bot_list[i].id == 5)
+                    do_animation_bot(data, 38, 78, 8, 400, 37, 78, 61, 400, 37, 77, 114, 400, i);
+                if (data->bot_list[i].id == 6)
+                    do_animation_bot(data, 35, 76, 168, 402, 35, 77, 220, 400, 35, 76, 273, 401, i);
+                if (data->bot_list[i].id == 7)
+                    do_animation_bot(data, 30, 76, 330, 400, 30, 77, 383, 399, 31, 76, 435, 400, i);
+                if (data->bot_list[i].id == 8)
+                    do_animation_bot(data, 36, 78, 485, 399, 36, 78, 539, 398, 36, 77, 591, 400, i);
             }
             if (data->bot_list[i].direction == RIGHT && data->bot_list[i].pos_x < MAX_X){
+                data->bot_list[i].counter_ch_dir += data->bot_list[i].speed;
                 data->bot_list[i].pos_x += data->bot_list[i].speed;
                 sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
                 if (data->bot_list[i].id == 1)
@@ -415,8 +434,17 @@ void game_instruction(data_t *data)
                     do_animation_bot(data, 39, 72, 323, 166, 39, 73, 376, 165, 39, 72, 429, 166, i);
                 if (data->bot_list[i].id == 4)
                     do_animation_bot(data, 45, 77, 477, 160, 44, 77, 532, 161, 42, 76, 585, 162, i);
+                if (data->bot_list[i].id == 5)
+                    do_animation_bot(data, 36, 78, 10, 479, 36, 78, 62, 478, 36, 76, 115, 480, i);
+                if (data->bot_list[i].id == 6)
+                    do_animation_bot(data, 35, 75, 170, 482, 35, 76, 223, 481, 35, 75, 276, 481, i);
+                if (data->bot_list[i].id == 7)
+                    do_animation_bot(data, 30, 75, 330, 480, 30, 76, 382, 479, 30, 75, 436, 480, i);
+                if (data->bot_list[i].id == 8)
+                    do_animation_bot(data, 37, 78, 485, 477, 37, 78, 538, 477, 37, 77, 591, 478, i);
             }
             if (data->bot_list[i].direction == UP && data->bot_list[i].pos_y > MIN_Y){
+                data->bot_list[i].counter_ch_dir += data->bot_list[i].speed;
                 data->bot_list[i].pos_y -= data->bot_list[i].speed;
                 sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
                 if (data->bot_list[i].id == 1)
@@ -427,6 +455,14 @@ void game_instruction(data_t *data)
                     do_animation_bot(data, 41, 72, 323, 246, 42, 73, 377, 244, 40, 72, 430, 245, i);
                 if (data->bot_list[i].id == 4)
                     do_animation_bot(data, 33, 75, 487, 241, 33, 76, 539, 240, 32, 75, 592, 241, i);
+                if (data->bot_list[i].id == 5)
+                    do_animation_bot(data, 39, 76, 8, 558, 39, 76, 61, 558, 38, 75, 115, 560, i);
+                if (data->bot_list[i].id == 6)
+                    do_animation_bot(data, 33, 74, 169, 560, 33, 75, 222, 560, 32, 74, 275, 560, i);
+                if (data->bot_list[i].id == 7)
+                    do_animation_bot(data, 32, 75, 328, 560, 33, 76, 381, 559, 33, 75, 433, 560, i);
+                if (data->bot_list[i].id == 8)
+                    do_animation_bot(data, 39, 77, 483, 557, 38, 77, 536, 557, 38, 76, 589, 559, i);
             }
         }
     }
