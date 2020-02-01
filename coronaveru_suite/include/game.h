@@ -35,6 +35,7 @@
 #define NUMBER_OF_DIRECTION   4
 #define SPEED_BOT_MIN         2
 #define SPEED_BOT_MAX         6
+#define SPEED_BOT_INFECTED     SPEED_BOT_MAX / 2
 
 /* MAP PARAMETERS */
 #define MIN_X                 42
@@ -43,8 +44,8 @@
 #define MAX_Y                 958
 
 /* PLAYERS PARAMETER */
-#define SPEED_PLAYER_ONE      4
-#define SPEED_PLAYER_TWO      4
+#define SPEED_PLAYER_ONE      5
+#define SPEED_PLAYER_TWO      5
 
 /* RANDOM CHANGE DIRECTION */
 #define MIN_CH_DIR            30

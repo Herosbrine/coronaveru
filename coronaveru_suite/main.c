@@ -404,8 +404,10 @@ void game_instruction(data_t *data)
                     }
                 }
             }
-            if (data->bot_list[i].is_infected == 1)
+            if (data->bot_list[i].is_infected == 1) {
+                data->bot_list[i].speed = SPEED_BOT_INFECTED;
                 sfSprite_setColor(data->bot_list[i].sprite, sfColor_fromRGBA(255, 20, 20, 150));
+            }
             if (data->bot_list[i].direction == DOWN && data->bot_list[i].pos_y < MAX_Y){
                 data->bot_list[i].counter_ch_dir += data->bot_list[i].speed;
                 data->bot_list[i].pos_y += data->bot_list[i].speed;
