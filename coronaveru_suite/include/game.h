@@ -103,6 +103,9 @@ typedef struct data_s
 /* INITIALIZE GAME */
 sfRenderWindow *create_window(void);
 void initialize_data(data_t *data);
+void initialize_players(data_t *data);
+void initialize_bots(data_t *data);
+void game_instruction(data_t *data);
+int random_number(int nb1, int nb2);
 
 #endif /* GAME_H_ */
-
