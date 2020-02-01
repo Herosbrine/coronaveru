@@ -21,8 +21,16 @@ sfRenderWindow *create_window(void)
     return (window);
 }
 
+void initialize_sounds(data_t *data)
+{
+    data->sound_buffer.horror = sfSoundBuffer_createFromFile("sound/horrreur.ogg");
+    data->sound.horror = sfSound_create();
+    sfSound_setBuffer(data->sound.horror, data->sound_buffer.horror);
+}
+
 void initialize_data(data_t *data)
 {
+    data->sound_active = ON;
     data->animation_number = 1;
     data->begin_animation = ON;
     data->font = sfFont_createFromFile("style/font.ttf");
@@ -33,6 +41,7 @@ void initialize_data(data_t *data)
     initialize_players(data);
     initialize_bots(data);
     initialize_soins(data);
+    initialize_sounds(data);
 }
 
 int random_number(int nb1, int nb2)
@@ -131,6 +140,7 @@ void initialize_players(data_t *data)
     data->textures.player_one = sfTexture_createFromFile("img/player_one.png", NULL);
     data->textures.player_two = sfTexture_createFromFile("img/player_two.png", NULL);
     for (int i = 0; i < 2; i++){
+       data->players_list[i].nb_soin = 0;
        data->players_list[i].sprite = sfSprite_create();
        data->players_list[i].direction = DOWN;
        data->players_list[i].clock = sfClock_create();

@@ -35,15 +35,15 @@
 #define NUMBER_OF_DIRECTION   4
 #define SPEED_BOT_MIN         2
 #define SPEED_BOT_MAX         6
-#define SPEED_BOT_INFECTED     SPEED_BOT_MAX / 2
+#define SPEED_BOT_INFECTED    SPEED_BOT_MAX / 2
 
 /* MAP PARAMETERS */
 #define MIN_X                 42
 #define MAX_X                 1838
 #define MIN_Y                 126
 #define MAX_Y                 958
-#define MILLISECOND_PER_SOIN  5000
-#define LIMIT_SOIN            6    
+#define MILLISECOND_PER_SOIN  4000
+#define LIMIT_SOIN            6
 
 /* PLAYERS PARAMETER */
 #define SPEED_PLAYER_ONE      5
@@ -54,7 +54,7 @@
 #define MAX_CH_DIR            400
 
 /* OTHERS */
-#define SOINS_LIST 10
+#define SOINS_LIST 6
 
 typedef struct textures_s
 {
@@ -100,8 +100,19 @@ typedef struct bot_s
     sfSprite *sprite;
 }bot_t;
 
+typedef struct sound_s
+{
+    sfSound *horror;
+}sound_t;
+
+typedef struct sound_buffer_s
+{
+    sfSoundBuffer *horror;
+}sound_buffer_t;
+
 typedef struct data_s
 {
+    int sound_active;
     sfRenderWindow *window;
     sfFont *font;
     sfClock *soin_generator;
@@ -118,6 +129,8 @@ typedef struct data_s
     textures_t textures;
     players_t players;
     players_t *players_list;
+    sound_buffer_t sound_buffer;
+    sound_t sound;
 }data_t;
 
 /* INITIALIZE GAME */

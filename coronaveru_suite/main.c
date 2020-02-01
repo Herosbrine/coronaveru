@@ -395,6 +395,21 @@ void game_instruction(data_t *data)
             }
         }
     }
+    for (int i = 0; i < 2; i++){
+        for (int j = 0; j < SOINS_LIST; j++){
+            if (data->soins_list[j].pos_x >= data->players_list[i].pos_x && data->soins_list[j].pos_x <= data->players_list[i].pos_x + data->players_list[i].rect.width
+                && data->soins_list[j].pos_y >= data->players_list[i].pos_y && data->soins_list[j].pos_y <= data->players_list[i].pos_y + data->players_list[i].rect.height ||
+                data->players_list[i].pos_x >= data->soins_list[j].pos_x && data->players_list[i].pos_x <= data->soins_list[j].pos_x + 50
+                && data->players_list[i].pos_y >= data->soins_list[j].pos_y && data->players_list[i].pos_y <= data->soins_list[j].pos_y + 50 && data->soins_list[j].active == ON){
+                    data->soin_active -= 1;
+                    data->soins_list[j].active = OFF;
+                    data->soins_list[j].pos_x = random_number(MIN_X - 1, MAX_X);
+                    data->soins_list[j].pos_y = random_number(MIN_Y - 1, MAX_Y);
+                    sfSprite_setPosition(data->players_list[i].sprite, (sfVector2f) {data->soins_list[j].pos_x, data->soins_list[j].pos_y});
+                    data->players_list[i].nb_soin++;
+            }
+        }
+    }
     if (data->begin_animation == 0){
         for (int i = 0; i < data->number_of_bots; i++){
             if (data->bot_list[i].change_direction < data->bot_list[i].counter_ch_dir){
@@ -418,6 +433,24 @@ void game_instruction(data_t *data)
                         && data->bot_list[i].pos_y >= data->bot_list[j].pos_y && data->bot_list[i].pos_y <= data->bot_list[j].pos_y + data->bot_list[j].rect.height){
                         data->bot_list[j].is_infected = 1;
                         data->bot_list[i].is_infected = 1;
+                    }
+                }
+            }
+            if (data->bot_list[i].is_infected == 1){
+                for (int j = 0; j < 2; j++){
+                    if (data->players_list[j].nb_soin > 0){
+                        if (data->players_list[j].pos_x >= data->bot_list[i].pos_x && data->players_list[j].pos_x <= data->bot_list[i].pos_x + data->bot_list[i].rect.width
+                            && data->players_list[j].pos_y >= data->bot_list[i].pos_y && data->players_list[j].pos_y <= data->bot_list[i].pos_y + data->bot_list[i].rect.height ||
+                            data->bot_list[i].pos_x >= data->players_list[j].pos_x && data->bot_list[i].pos_x <= data->players_list[j].pos_x + data->players_list[j].rect.width
+                            && data->bot_list[i].pos_y >= data->players_list[j].pos_y && data->bot_list[i].pos_y <= data->players_list[j].pos_y + data->players_list[j].rect.height){
+                                data->players_list[j].nb_soin -= 1;
+                                data->bot_list[i].is_infected = 0;
+                                sfSprite_destroy(data->bot_list[i].sprite);
+                                data->bot_list[i].sprite = sfSprite_create();
+                                sfSprite_setTexture(data->bot_list[i].sprite, data->textures.bot, sfTrue);
+                                sfSprite_setTextureRect(data->bot_list[i].sprite, data->bot_list[i].rect);
+                                sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
+                        }
                     }
                 }
             }
@@ -766,15 +799,12 @@ void game_instruction(data_t *data)
 
 void game_loop(data_t *data)
 {
-    sfSoundBuffer *sbang;
-    sbang = sfSoundBuffer_createFromFile("sound/horrreur.ogg");
-    sfSound *bang;
-    bang = sfSound_create();
-    sfSound_setBuffer(bang, sbang);
-    sfSound_play(bang);
+    sfSound_play(data->sound.horror);
+    sfSound_setLoop(data->sound.horror, sfTrue);
     while (sfRenderWindow_isOpen(data->window)){
         events_handling(data);
         game_instruction(data);
+        printf("%d - %d\n", data->players_list[1].nb_soin, data->players_list[0].nb_soin);
         display_game(data);
     }
 }
