@@ -32,6 +32,7 @@ void initialize_data(data_t *data)
     sfSprite_setTexture(data->s_map, data->textures.map, sfTrue);
     initialize_players(data);
     initialize_bots(data);
+    initialize_soins(data);
 }
 
 int random_number(int nb1, int nb2)
@@ -67,6 +68,21 @@ void initialize_bot_id(data_t *data, int w1, int h1, int l1, int t1, int w2, int
         data->bot_list[i].rect.top = t4;
         data->bot_list[i].rect.height = h4;
         data->bot_list[i].rect.width = w4;
+    }
+}
+
+void initialize_soins(data_t *data)
+{
+    data->soin_active = 0;
+    data->soin_generator = sfClock_create();
+    data->soins_list = malloc(sizeof(data->soins) * SOINS_LIST);
+    data->textures.soin = sfTexture_createFromFile("img/soin.png", NULL);
+    for (int i = 0; i < SOINS_LIST; i++){
+        data->soins_list[i].active = OFF;
+        data->soins_list[i].sprite = sfSprite_create();
+        sfSprite_setTexture(data->soins_list[i].sprite, data->textures.soin, sfTrue);
+        data->soins_list[i].pos_x = random_number(MIN_X - 1, MAX_X);
+        data->soins_list[i].pos_y = random_number(MIN_Y - 1, MAX_Y);
     }
 }
 

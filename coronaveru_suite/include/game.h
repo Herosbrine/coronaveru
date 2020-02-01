@@ -42,6 +42,8 @@
 #define MAX_X                 1838
 #define MIN_Y                 126
 #define MAX_Y                 958
+#define MILLISECOND_PER_SOIN  5000
+#define LIMIT_SOIN            6    
 
 /* PLAYERS PARAMETER */
 #define SPEED_PLAYER_ONE      5
@@ -51,18 +53,31 @@
 #define MIN_CH_DIR            30
 #define MAX_CH_DIR            400
 
+/* OTHERS */
+#define SOINS_LIST 10
+
 typedef struct textures_s
 {
+    sfTexture *soin;
     sfTexture *player_one;
     sfTexture *player_two;
     sfTexture *bot;
     sfTexture *map;
 }textures_t;
 
+typedef struct soins_s
+{
+    int active;
+    sfSprite *sprite;
+    int pos_x;
+    int pos_y;
+}soins_t;
+
 typedef struct players_s
 {
     int pos_x;
     int pos_y;
+    int nb_soin;
     int direction;
     int animation;
     sfIntRect rect;
@@ -89,11 +104,15 @@ typedef struct data_s
 {
     sfRenderWindow *window;
     sfFont *font;
+    sfClock *soin_generator;
     sfEvent event;
+    int soin_active;
     int number_of_bots;
     int begin_animation;
     int animation_number;
     sfSprite *s_map;
+    soins_t soins;
+    soins_t *soins_list;
     bot_t bot;
     bot_t *bot_list;
     textures_t textures;
