@@ -29,8 +29,8 @@
 #define ON      1
 
 /* BOTS PARAMETERS */
-#define NUMBER_OF_BOTS        8
-#define BOTS_INFECTED         3
+#define NUMBER_OF_BOTS        15
+#define BOTS_INFECTED         4
 #define NUMBER_OF_ID          8
 #define NUMBER_OF_DIRECTION   4
 #define SPEED_BOT_MIN         2

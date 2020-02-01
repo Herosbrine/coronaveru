@@ -380,6 +380,32 @@ void game_instruction(data_t *data)
     // BOTS //
     if (data->begin_animation == 0){
         for (int i = 0; i < data->number_of_bots; i++){
+            if (data->bot_list[i].change_direction < data->bot_list[i].counter_ch_dir){
+                data->bot_list[i].counter_ch_dir = 0;
+                data->bot_list[i].change_direction = random_number(MIN_CH_DIR, MAX_CH_DIR);
+                data->bot_list[i].direction = random_number(0, NUMBER_OF_DIRECTION);
+            }
+            if (data->bot_list[i].direction == DOWN && data->bot_list[i].pos_y >= MAX_Y
+            || data->bot_list[i].direction == LEFT && data->bot_list[i].pos_x <= MIN_X
+            || data->bot_list[i].direction == RIGHT && data->bot_list[i].pos_x >= MAX_X
+            || data->bot_list[i].direction == UP && data->bot_list[i].pos_y <= MIN_Y){
+                data->bot_list[i].counter_ch_dir = 0;
+                data->bot_list[i].change_direction = random_number(MIN_CH_DIR, MAX_CH_DIR);
+                data->bot_list[i].direction = random_number(0, NUMBER_OF_DIRECTION);
+            }
+            for (int j = i; j < data->number_of_bots; j++){
+                if (data->bot_list[j].is_infected == 1 || data->bot_list[i].is_infected == 1){
+                    if (data->bot_list[j].pos_x >= data->bot_list[i].pos_x && data->bot_list[j].pos_x <= data->bot_list[i].pos_x + data->bot_list[i].rect.width
+                        && data->bot_list[j].pos_y >= data->bot_list[i].pos_y && data->bot_list[j].pos_y <= data->bot_list[i].pos_y + data->bot_list[i].rect.height ||
+                        data->bot_list[i].pos_x >= data->bot_list[j].pos_x && data->bot_list[i].pos_x <= data->bot_list[j].pos_x + data->bot_list[j].rect.width
+                        && data->bot_list[i].pos_y >= data->bot_list[j].pos_y && data->bot_list[i].pos_y <= data->bot_list[j].pos_y + data->bot_list[j].rect.height){
+                        data->bot_list[j].is_infected = 1;
+                        data->bot_list[i].is_infected = 1;
+                    }
+                }
+            }
+            if (data->bot_list[i].is_infected == 1)
+                sfSprite_setColor(data->bot_list[i].sprite, sfColor_fromRGBA(255, 20, 20, 150));
             if (data->bot_list[i].direction == DOWN && data->bot_list[i].pos_y < MAX_Y){
                 data->bot_list[i].counter_ch_dir += data->bot_list[i].speed;
                 data->bot_list[i].pos_y += data->bot_list[i].speed;

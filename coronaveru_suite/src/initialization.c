@@ -102,8 +102,8 @@ void initialize_bots(data_t *data)
             initialize_bot_id(data, 32, 76, 381, 320, 30, 77, 383, 399, 30, 76, 382, 479, 33, 76, 381, 559, i);
         if (data->bot_list[i].id == 8)
             initialize_bot_id(data, 38, 77, 538, 319, 36, 78, 539, 398, 37, 78, 538, 477, 38, 77, 536, 557, i);
-        if (i < 3)
-            sfSprite_setColor(data->bot_list[i].sprite, sfColor_fromRGBA(255, 20, 20, 150));
+        if (i < BOTS_INFECTED)
+            data->bot_list[i].is_infected = 1;
         sfSprite_setPosition(data->bot_list[i].sprite, (sfVector2f) {data->bot_list[i].pos_x, data->bot_list[i].pos_y});
         sfSprite_setTextureRect(data->bot_list[i].sprite, data->bot_list[i].rect);
      }
