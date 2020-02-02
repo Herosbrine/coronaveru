@@ -40,7 +40,7 @@ void move_bat_part_1(d_t *d)
         if (d->last_bat_2.pos.x <= 1920) {
             d->last_bat_2.pos.x += 5;
         }
-        if (d->last_bat_2.pos.x >= 1920)
+        if (d->last_bat_1.pos.x <= -150)
             d->scene_faez = 1;
         sfSprite_setPosition(d->last_bat_1.sprite, d->last_bat_1.pos);
         sfSprite_setPosition(d->last_bat_2.sprite, d->last_bat_2.pos);
