@@ -49,6 +49,9 @@ void display_text1(data_t *data)
 
     else if (sfTime_asSeconds(data->timer.time) < 16)
         sfRenderWindow_drawSprite(data->window, data->command.scommand, NULL);
+
+    else if (sfTime_asSeconds(data->timer.time) < 19)
+        sfRenderWindow_close(data->window);
     sfRenderWindow_display(data->window);
 }
 
