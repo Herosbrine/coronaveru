@@ -10,10 +10,10 @@
 
 #include "structure.h"
 
-void init_map_grotte_sprite_texture(data_t *data);
-void disp_map(data_t *data);
-void map_grotte(data_t *data);
-void init_grotte_layer(data_t *data);
-void move_map_grotte(data_t *data);
+void init_map_grotte_sprite_texture(d_t *d);
+void disp_map(d_t *d);
+void map_grotte(d_t *d);
+void init_grotte_layer(d_t *d);
+void move_map_grotte(d_t *d);
 
 #endif

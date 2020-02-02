@@ -11,31 +11,32 @@
 #include "my.h"
 #include "chauffe_souris.h"
 
-void init_variables(data_t *data)
+void init_variables(d_t *d)
 {
-    data->window = create_window();
-    sfRenderWindow_setMouseCursorVisible(data->window, sfFalse);
-    data->stress_music.sbang = sfSoundBuffer_createFromFile("sound/stress_music.ogg");
-    data->stress_music.bang = sfSound_create();
-    sfSound_setBuffer(data->stress_music.bang, data->stress_music.sbang);
-    data->nbr_chf_souris = 18;
-    data->nbr_total_bat = data->nbr_chf_souris;
-    data->active_click = 0;
-    data->active_die = 0;
-    data->active_dir = 0;
-    data->mouse_move_x = 0;
-    data->mouse_move_y = 0;
-    data->last_bat_alive = 0;
-    data->end_scene = 0;
-    data->active_restart = 0;
-    data->button_clock = sfClock_create();
-    init_grotte_layer(data);
-    init_map_grotte_sprite_texture(data);
-    init_chauffe_souris_sp_t(data);
-    init_chauffe_souris_pos(data);
-    init_bat_die(data);
-    init_scope(data);
-    init_last_scene(data);
-    for (int i = 0; i < data->nbr_chf_souris; i++)
-        data->chauffe_souris_tab[i].is_die = 0;
+    d->window = create_window();
+    sfRenderWindow_setMouseCursorVisible(d->window, sfFalse);
+    d->stress_music.sbang = sfSoundBuffer_createFromFile("sound/stress_music.ogg");
+    d->stress_music.bang = sfSound_create();
+    sfSound_setBuffer(d->stress_music.bang, d->stress_music.sbang);
+    d->nbr_chf_souris = 18;
+    d->nbr_total_bat = d->nbr_chf_souris;
+    d->active_click = 0;
+    d->active_die = 0;
+    d->active_dir = 0;
+    d->mouse_move_x = 0;
+    d->mouse_move_y = 0;
+    d->last_bat_alive = 0;
+    d->end_scene = 0;
+    d->active_restart = 0;
+    d->scene_faez = 0;
+    d->button_clock = sfClock_create();
+    init_grotte_layer(d);
+    init_map_grotte_sprite_texture(d);
+    init_chauffe_souris_sp_t(d);
+    init_chauffe_souris_pos(d);
+    init_bat_die(d);
+    init_scope(d);
+    init_last_scene(d);
+    for (int i = 0; i < d->nbr_chf_souris; i++)
+        d->chauffe_souris_tab[i].is_die = 0;
 }

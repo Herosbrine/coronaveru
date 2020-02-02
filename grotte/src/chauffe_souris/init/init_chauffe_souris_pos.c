@@ -9,13 +9,13 @@
 #include "map_grotte.h"
 #include "macro.h"
 
-void init_direction(data_t *data)
+void init_direction(d_t *d)
 {
     int nbr = 0;
     const int MAX = 6;
     const int MIN = 1;
 
-    for (int i = 0; i < data->nbr_chf_souris; i++) {
+    for (int i = 0; i < d->nbr_chf_souris; i++) {
         nbr = rand() % (MAX - MIN) + MIN;
         if (nbr == 1) {
             CHF_SOURIS[i].dir_x = 4;
@@ -44,9 +44,9 @@ void init_direction(data_t *data)
     }
 }
 
-void init_chauffe_souris_pos(data_t *data)
+void init_chauffe_souris_pos(d_t *d)
 {
-    init_direction(data);
+    init_direction(d);
     //HAU
     CHF_SOURIS[0].pos.x = 10;
     CHF_SOURIS[0].pos.y = 50;

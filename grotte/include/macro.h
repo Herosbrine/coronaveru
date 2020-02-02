@@ -14,7 +14,7 @@
 #define LAYER_4 "image/map_one/l4_stones.png"
 #define LAYER_5 "image/map_one/l5_crystals.png"
 #define LAYER_6 "image/map_one/l6_ground.png"
-#define CHF_SOURIS data->chauffe_souris_tab
+#define CHF_SOURIS d->chauffe_souris_tab
 #define GET_TIME(x) sfTime_asMilliseconds(sfClock_getElapsedTime(x))
 
 #endif

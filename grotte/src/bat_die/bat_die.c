@@ -8,63 +8,63 @@
 #include "structure.h"
 #include "macro.h"
 
-void init_bat_die(data_t *data)
+void init_bat_die(d_t *d)
 {
-    data->texture.t_bat_die = sfTexture_createFromFile("image/blood.png", NULL);
-    data->bat_die.sprite = sfSprite_create();
-    sfSprite_setTexture(data->bat_die.sprite, data->texture.t_bat_die, 0);
-    sfSprite_setTextureRect(data->bat_die.sprite, (sfIntRect){104, 0, 123, 141});
-    data->bat_die.clock = sfClock_create();
+    d->texture.t_bat_die = sfTexture_createFromFile("image/blood.png", NULL);
+    d->bat_die.sprite = sfSprite_create();
+    sfSprite_setTexture(d->bat_die.sprite, d->texture.t_bat_die, 0);
+    sfSprite_setTextureRect(d->bat_die.sprite, (sfIntRect){104, 0, 123, 141});
+    d->bat_die.clock = sfClock_create();
 }
 
-void animation_die_1(data_t *data)
+void animation_die_1(d_t *d)
 {
-    if (GET_TIME(data->bat_die.clock) >= 0
-    && GET_TIME(data->bat_die.clock) <= 300) {
-        data->bat_die.rect.left = 0;
-        data->bat_die.rect.width = 104;
-        data->bat_die.rect.height = 141;
-        sfSprite_setTextureRect(data->bat_die.sprite, data->bat_die.rect);
+    if (GET_TIME(d->bat_die.clock) >= 0
+    && GET_TIME(d->bat_die.clock) <= 300) {
+        d->bat_die.rect.left = 0;
+        d->bat_die.rect.width = 104;
+        d->bat_die.rect.height = 141;
+        sfSprite_setTextureRect(d->bat_die.sprite, d->bat_die.rect);
     }
 }
 
-void animation_die_2(data_t *data)
+void animation_die_2(d_t *d)
 {
-    if (GET_TIME(data->bat_die.clock) >= 300
-    && GET_TIME(data->bat_die.clock) <= 600) {
-        data->bat_die.rect.left = 104;
-        data->bat_die.rect.width = 123;
-        data->bat_die.rect.height = 141;
-        sfSprite_setTextureRect(data->bat_die.sprite, data->bat_die.rect);
+    if (GET_TIME(d->bat_die.clock) >= 300
+    && GET_TIME(d->bat_die.clock) <= 600) {
+        d->bat_die.rect.left = 104;
+        d->bat_die.rect.width = 123;
+        d->bat_die.rect.height = 141;
+        sfSprite_setTextureRect(d->bat_die.sprite, d->bat_die.rect);
     }
 }
 
 
-void animation_die_3(data_t *data)
+void animation_die_3(d_t *d)
 {
-    if (GET_TIME(data->bat_die.clock) >= 600
-    && GET_TIME(data->bat_die.clock) <= 1200) {
-        data->bat_die.rect.left = 227;
-        data->bat_die.rect.width = 139;
-        data->bat_die.rect.height = 141;
-        sfSprite_setTextureRect(data->bat_die.sprite, data->bat_die.rect);
+    if (GET_TIME(d->bat_die.clock) >= 600
+    && GET_TIME(d->bat_die.clock) <= 1200) {
+        d->bat_die.rect.left = 227;
+        d->bat_die.rect.width = 139;
+        d->bat_die.rect.height = 141;
+        sfSprite_setTextureRect(d->bat_die.sprite, d->bat_die.rect);
     }
-    if (GET_TIME(data->bat_die.clock) >= 1200)
-        sfClock_restart(data->bat_die.clock);
+    if (GET_TIME(d->bat_die.clock) >= 1200)
+        sfClock_restart(d->bat_die.clock);
 }
 
-void animation_die(data_t *data)
+void animation_die(d_t *d)
 {
-    animation_die_1(data);
-    animation_die_2(data);
-    animation_die_3(data);
+    animation_die_1(d);
+    animation_die_2(d);
+    animation_die_3(d);
 }
 
-void bat_die(data_t *data)
+void bat_die(d_t *d)
 {
-    if (data->active_die == 1) {
-        sfSprite_setPosition(data->bat_die.sprite, data->bat_die.pos);
-        //animation_die(data);
-        sfRenderWindow_drawSprite(data->window, data->bat_die.sprite, 0);
+    if (d->active_die == 1) {
+        sfSprite_setPosition(d->bat_die.sprite, d->bat_die.pos);
+        //animation_die(d);
+        sfRenderWindow_drawSprite(d->window, d->bat_die.sprite, 0);
     }
 }

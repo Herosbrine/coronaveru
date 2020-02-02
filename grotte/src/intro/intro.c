@@ -1,7 +1,7 @@
 #include "structure.h"
 #include "game.h"
 
-void intro(data_t *data)
+void intro(d_t *d)
 {
      sfTexture *ttext1;
      ttext1 = sfTexture_createFromFile("src/intro/intrigue_text/earth_in_dang_05.png", NULL);
@@ -311,130 +311,130 @@ void intro(data_t *data)
     bang = sfSound_create();
     sfSound_setBuffer(bang, sbang);
     sfSound_play(bang);
-     while (sfRenderWindow_isOpen(data->window)) {
+     while (sfRenderWindow_isOpen(d->window)) {
         sfEvent event;
-        while (sfRenderWindow_pollEvent(data->window, &event)) {
+        while (sfRenderWindow_pollEvent(d->window, &event)) {
             if (event.type == sfEvtClosed) {
-                sfRenderWindow_close(data->window);
+                sfRenderWindow_close(d->window);
             }
         }
         time = sfClock_getElapsedTime(clock);
         if (sfTime_asSeconds(time) < 3)
-            sfRenderWindow_drawSprite(data->window, stext1, NULL);
+            sfRenderWindow_drawSprite(d->window, stext1, NULL);
         else if (sfTime_asSeconds(time) < 3.1)
-            sfRenderWindow_drawSprite(data->window, stext1a, NULL);
+            sfRenderWindow_drawSprite(d->window, stext1a, NULL);
         else if (sfTime_asSeconds(time) < 3.2)
-            sfRenderWindow_drawSprite(data->window, stext1b, NULL);
+            sfRenderWindow_drawSprite(d->window, stext1b, NULL);
         else if (sfTime_asSeconds(time) < 3.30)
-            sfRenderWindow_drawSprite(data->window, stext1c, NULL);
+            sfRenderWindow_drawSprite(d->window, stext1c, NULL);
         else if (sfTime_asSeconds(time) < 3.40)
-            sfRenderWindow_drawSprite(data->window, stext1d, NULL);
+            sfRenderWindow_drawSprite(d->window, stext1d, NULL);
 
         else if (sfTime_asSeconds(time) < 7)
-            sfRenderWindow_drawSprite(data->window, stext2a, NULL);
+            sfRenderWindow_drawSprite(d->window, stext2a, NULL);
         else if (sfTime_asSeconds(time) < 7.1)
-            sfRenderWindow_drawSprite(data->window, stext2b, NULL);
+            sfRenderWindow_drawSprite(d->window, stext2b, NULL);
         else if (sfTime_asSeconds(time) < 7.2)
-            sfRenderWindow_drawSprite(data->window, stext2c, NULL);
+            sfRenderWindow_drawSprite(d->window, stext2c, NULL);
         else if (sfTime_asSeconds(time) < 7.30)
-            sfRenderWindow_drawSprite(data->window, stext2d, NULL);
+            sfRenderWindow_drawSprite(d->window, stext2d, NULL);
         else if (sfTime_asSeconds(time) < 7.40)
-            sfRenderWindow_drawSprite(data->window, stext2e, NULL);
+            sfRenderWindow_drawSprite(d->window, stext2e, NULL);
 
         else if (sfTime_asSeconds(time) < 11)
-            sfRenderWindow_drawSprite(data->window, stext3, NULL);
+            sfRenderWindow_drawSprite(d->window, stext3, NULL);
         else if (sfTime_asSeconds(time) < 11.1)
-            sfRenderWindow_drawSprite(data->window, stext3a, NULL);
+            sfRenderWindow_drawSprite(d->window, stext3a, NULL);
         else if (sfTime_asSeconds(time) < 11.2)
-            sfRenderWindow_drawSprite(data->window, stext3b, NULL);
+            sfRenderWindow_drawSprite(d->window, stext3b, NULL);
         else if (sfTime_asSeconds(time) < 10.30)
-            sfRenderWindow_drawSprite(data->window, stext3c, NULL);
+            sfRenderWindow_drawSprite(d->window, stext3c, NULL);
         else if (sfTime_asSeconds(time) < 10.40)
-            sfRenderWindow_drawSprite(data->window, stext3d, NULL);
+            sfRenderWindow_drawSprite(d->window, stext3d, NULL);
 
         else if (sfTime_asSeconds(time) < 13)
-            sfRenderWindow_drawSprite(data->window, stext4, NULL);
+            sfRenderWindow_drawSprite(d->window, stext4, NULL);
         else if (sfTime_asSeconds(time) < 13.1)
-            sfRenderWindow_drawSprite(data->window, stext4a, NULL);
+            sfRenderWindow_drawSprite(d->window, stext4a, NULL);
         else if (sfTime_asSeconds(time) < 13.2)
-            sfRenderWindow_drawSprite(data->window, stext4b, NULL);
+            sfRenderWindow_drawSprite(d->window, stext4b, NULL);
         else if (sfTime_asSeconds(time) < 13.30)
-            sfRenderWindow_drawSprite(data->window, stext4c, NULL);
+            sfRenderWindow_drawSprite(d->window, stext4c, NULL);
         else if (sfTime_asSeconds(time) < 13.40)
-            sfRenderWindow_drawSprite(data->window, stext4d, NULL);
+            sfRenderWindow_drawSprite(d->window, stext4d, NULL);
 
         else if (sfTime_asSeconds(time) < 17)
-               sfRenderWindow_drawSprite(data->window, stext5, NULL);
+               sfRenderWindow_drawSprite(d->window, stext5, NULL);
         else if (sfTime_asSeconds(time) < 17.1)
-               sfRenderWindow_drawSprite(data->window, stext5a, NULL);
+               sfRenderWindow_drawSprite(d->window, stext5a, NULL);
         else if (sfTime_asSeconds(time) < 17.2)
-               sfRenderWindow_drawSprite(data->window, stext5b, NULL);
+               sfRenderWindow_drawSprite(d->window, stext5b, NULL);
         else if (sfTime_asSeconds(time) < 17.30)
-               sfRenderWindow_drawSprite(data->window, stext5c, NULL);
+               sfRenderWindow_drawSprite(d->window, stext5c, NULL);
         else if (sfTime_asSeconds(time) < 17.40)
-               sfRenderWindow_drawSprite(data->window, stext5d, NULL);
+               sfRenderWindow_drawSprite(d->window, stext5d, NULL);
 
         else if (sfTime_asSeconds(time) < 21)
-               sfRenderWindow_drawSprite(data->window, stext6, NULL);
+               sfRenderWindow_drawSprite(d->window, stext6, NULL);
         else if (sfTime_asSeconds(time) < 21.1)
-               sfRenderWindow_drawSprite(data->window, stext6a, NULL);
+               sfRenderWindow_drawSprite(d->window, stext6a, NULL);
         else if (sfTime_asSeconds(time) < 21.2)
-               sfRenderWindow_drawSprite(data->window, stext6b, NULL);
+               sfRenderWindow_drawSprite(d->window, stext6b, NULL);
         else if (sfTime_asSeconds(time) < 21.30)
-               sfRenderWindow_drawSprite(data->window, stext6c, NULL);
+               sfRenderWindow_drawSprite(d->window, stext6c, NULL);
         else if (sfTime_asSeconds(time) < 21.40)
-               sfRenderWindow_drawSprite(data->window, stext6d, NULL);
+               sfRenderWindow_drawSprite(d->window, stext6d, NULL);
 
         else if (sfTime_asSeconds(time) < 25)
-               sfRenderWindow_drawSprite(data->window, stext7, NULL);
+               sfRenderWindow_drawSprite(d->window, stext7, NULL);
         else if (sfTime_asSeconds(time) < 25.1)
-               sfRenderWindow_drawSprite(data->window, stext7a, NULL);
+               sfRenderWindow_drawSprite(d->window, stext7a, NULL);
         else if (sfTime_asSeconds(time) < 25.2)
-               sfRenderWindow_drawSprite(data->window, stext7b, NULL);
+               sfRenderWindow_drawSprite(d->window, stext7b, NULL);
         else if (sfTime_asSeconds(time) < 25.30)
-               sfRenderWindow_drawSprite(data->window, stext7c, NULL);
+               sfRenderWindow_drawSprite(d->window, stext7c, NULL);
         else if (sfTime_asSeconds(time) < 25.40)
-               sfRenderWindow_drawSprite(data->window, stext7d, NULL);
+               sfRenderWindow_drawSprite(d->window, stext7d, NULL);
 
         else if (sfTime_asSeconds(time) < 28)
-               sfRenderWindow_drawSprite(data->window, stext8, NULL);
+               sfRenderWindow_drawSprite(d->window, stext8, NULL);
         else if (sfTime_asSeconds(time) < 28.1)
-               sfRenderWindow_drawSprite(data->window, stext8a, NULL);
+               sfRenderWindow_drawSprite(d->window, stext8a, NULL);
         else if (sfTime_asSeconds(time) < 28.2)
-               sfRenderWindow_drawSprite(data->window, stext8b, NULL);
+               sfRenderWindow_drawSprite(d->window, stext8b, NULL);
         else if (sfTime_asSeconds(time) < 28.30)
-               sfRenderWindow_drawSprite(data->window, stext8c, NULL);
+               sfRenderWindow_drawSprite(d->window, stext8c, NULL);
         else if (sfTime_asSeconds(time) < 28.40)
-               sfRenderWindow_drawSprite(data->window, stext8d, NULL);
+               sfRenderWindow_drawSprite(d->window, stext8d, NULL);
 
         else if (sfTime_asSeconds(time) < 31)
-               sfRenderWindow_drawSprite(data->window, stext9, NULL);
+               sfRenderWindow_drawSprite(d->window, stext9, NULL);
         else if (sfTime_asSeconds(time) < 31.1)
-               sfRenderWindow_drawSprite(data->window, stext9a, NULL);
+               sfRenderWindow_drawSprite(d->window, stext9a, NULL);
         else if (sfTime_asSeconds(time) < 31.2)
-               sfRenderWindow_drawSprite(data->window, stext9b, NULL);
+               sfRenderWindow_drawSprite(d->window, stext9b, NULL);
         else if (sfTime_asSeconds(time) < 31.30)
-               sfRenderWindow_drawSprite(data->window, stext9c, NULL);
+               sfRenderWindow_drawSprite(d->window, stext9c, NULL);
         else if (sfTime_asSeconds(time) < 31.40)
-               sfRenderWindow_drawSprite(data->window, stext9d, NULL);
+               sfRenderWindow_drawSprite(d->window, stext9d, NULL);
 
         else if (sfTime_asSeconds(time) < 36.70)
-               sfRenderWindow_drawSprite(data->window, stext10, NULL);
+               sfRenderWindow_drawSprite(d->window, stext10, NULL);
         else if (sfTime_asSeconds(time) < 36.80)
-               sfRenderWindow_drawSprite(data->window, stext10a, NULL);
+               sfRenderWindow_drawSprite(d->window, stext10a, NULL);
         else if (sfTime_asSeconds(time) < 36.90)
-               sfRenderWindow_drawSprite(data->window, stext10b, NULL);
+               sfRenderWindow_drawSprite(d->window, stext10b, NULL);
         else if (sfTime_asSeconds(time) < 37)
-               sfRenderWindow_drawSprite(data->window, stext10c, NULL);
+               sfRenderWindow_drawSprite(d->window, stext10c, NULL);
         else if (sfTime_asSeconds(time) < 37.10)
-               sfRenderWindow_drawSprite(data->window, stext10d, NULL);
+               sfRenderWindow_drawSprite(d->window, stext10d, NULL);
 
         else if (sfTime_asSeconds(time) > 37) {
                 sfSound_destroy(bang);
                 sfSoundBuffer_destroy(sbang);
                 break;
         }
-        sfRenderWindow_display(data->window);
+        sfRenderWindow_display(d->window);
      }
     sfTexture_destroy(ttext1);
     sfTexture_destroy(ttext1a);

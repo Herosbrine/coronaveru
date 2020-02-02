@@ -9,18 +9,18 @@
 #include "map_grotte.h"
 #include "chauffe_souris.h"
 
-void animation(data_t *data)
+void animation(d_t *d)
 {
-    animation_chauffe_souris(data);
+    animation_chauffe_souris(d);
 }
 
-void game_instruction(data_t *data)
+void game_instruction(d_t *d)
 {
-    if (data->end_scene == 0) {
-    map_grotte(data);
-        animation(data);
-        collision(data);
+    if (d->end_scene == 0) {
+    map_grotte(d);
+        animation(d);
+        collision(d);
     } else {
-        last_scene(data);
+        last_scene(d);
     }
 }

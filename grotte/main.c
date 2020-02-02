@@ -8,27 +8,32 @@
 #include "structure.h"
 #include "game.h"
 
-void game(data_t *data)
+void game(d_t *d)
 {
-    init_variables(data);
-    intro(data);
+    init_variables(d);
+    //intro(d);
     srand(time(NULL));
-    sfSound_play(data->stress_music.bang);
-    while (sfRenderWindow_isOpen(data->window)){
-        event_gestion(data);
-        game_instruction(data);
-        sfRenderWindow_clear(data->window, sfBlack);
-        display_sprite(data);
-        sfRenderWindow_display(data->window);
+    sfSound_play(d->stress_music.bang);
+    while (sfRenderWindow_isOpen(d->window)){
+        event_gestion(d);
+        game_instruction(d);
+        sfRenderWindow_clear(d->window, sfBlack);
+        display_sprite(d);
+        sfRenderWindow_display(d->window);
+        if (d->scene_faez == 1)
+            break;
     }
-    sfSound_destroy(data->stress_music.bang);
-    sfSoundBuffer_destroy(data->stress_music.sbang);
+    sfSound_destroy(d->stress_music.bang);
+    sfSoundBuffer_destroy(d->stress_music.sbang);
+    sfRenderWindow_close(d->window);
 }
 
 int main(void)
 {
+    d_t d;
     data_t data;
 
-    game(&data);
+    game(&d);
+    video(&data);
     return (0);
 }

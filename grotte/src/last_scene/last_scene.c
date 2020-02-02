@@ -8,46 +8,48 @@
 #include "structure.h"
 #include "chauffe_souris.h"
 
-void init_last_scene(data_t *data)
+void init_last_scene(d_t *d)
 {
-    data->last_bat_1.sprite = sfSprite_create();
-    data->last_bat_2.sprite = sfSprite_create();
-    data->last_bat_1.clock = sfClock_create();
-    data->last_bat_2.clock = sfClock_create();
-    sfSprite_setTexture(data->last_bat_1.sprite, data->texture.chauffe_souris_lft, 0);
-    sfSprite_setTexture(data->last_bat_2.sprite, data->texture.chauffe_souris_rght, 0);
-    sfSprite_setTextureRect(data->last_bat_1.sprite, (sfIntRect){256, 0, 105, 96});
-    sfSprite_setTextureRect(data->last_bat_2.sprite, (sfIntRect){0, 0, 105, 96});
-    data->last_bat_1.pos.x = (1920 / 2) - 100;
-    data->last_bat_1.pos.y = 5;
-    data->last_bat_2.pos.x = (1920 / 2) + 100;
-    data->last_bat_2.pos.y = 5;
-    sfSprite_setPosition(data->last_bat_1.sprite, data->last_bat_1.pos);
-    sfSprite_setPosition(data->last_bat_2.sprite, data->last_bat_2.pos);
+    d->last_bat_1.sprite = sfSprite_create();
+    d->last_bat_2.sprite = sfSprite_create();
+    d->last_bat_1.clock = sfClock_create();
+    d->last_bat_2.clock = sfClock_create();
+    sfSprite_setTexture(d->last_bat_1.sprite, d->texture.chauffe_souris_lft, 0);
+    sfSprite_setTexture(d->last_bat_2.sprite, d->texture.chauffe_souris_rght, 0);
+    sfSprite_setTextureRect(d->last_bat_1.sprite, (sfIntRect){256, 0, 105, 96});
+    sfSprite_setTextureRect(d->last_bat_2.sprite, (sfIntRect){0, 0, 105, 96});
+    d->last_bat_1.pos.x = (1920 / 2) - 100;
+    d->last_bat_1.pos.y = 5;
+    d->last_bat_2.pos.x = (1920 / 2) + 100;
+    d->last_bat_2.pos.y = 5;
+    sfSprite_setPosition(d->last_bat_1.sprite, d->last_bat_1.pos);
+    sfSprite_setPosition(d->last_bat_2.sprite, d->last_bat_2.pos);
 }
 
-void move_bat_part_1(data_t *data)
+void move_bat_part_1(d_t *d)
 {
-    if (data->last_bat_1.pos.y < 400) {
-        data->last_bat_1.pos.y += 5;
-        data->last_bat_2.pos.y += 5;
-        sfSprite_setPosition(data->last_bat_1.sprite, data->last_bat_1.pos);
-        sfSprite_setPosition(data->last_bat_2.sprite, data->last_bat_2.pos);
-    } else if (data->last_bat_1.pos.y >= 400) {
-        if (data->last_bat_1.pos.x >= -150) {
-            data->last_bat_1.pos.x -= 5;
+    if (d->last_bat_1.pos.y < 400) {
+        d->last_bat_1.pos.y += 5;
+        d->last_bat_2.pos.y += 5;
+        sfSprite_setPosition(d->last_bat_1.sprite, d->last_bat_1.pos);
+        sfSprite_setPosition(d->last_bat_2.sprite, d->last_bat_2.pos);
+    } else if (d->last_bat_1.pos.y >= 400) {
+        if (d->last_bat_1.pos.x >= -150) {
+            d->last_bat_1.pos.x -= 5;
         }
-        if (data->last_bat_2.pos.x <= 1920) {
-            data->last_bat_2.pos.x += 5;
+        if (d->last_bat_2.pos.x <= 1920) {
+            d->last_bat_2.pos.x += 5;
         }
-        sfSprite_setPosition(data->last_bat_1.sprite, data->last_bat_1.pos);
-        sfSprite_setPosition(data->last_bat_2.sprite, data->last_bat_2.pos);
+        if (d->last_bat_2.pos.x >= 1920)
+            d->scene_faez = 1;
+        sfSprite_setPosition(d->last_bat_1.sprite, d->last_bat_1.pos);
+        sfSprite_setPosition(d->last_bat_2.sprite, d->last_bat_2.pos);
     }
 }
 
-void last_scene(data_t *data)
+void last_scene(d_t *d)
 {
-    animation_left_dir(&data->last_bat_1);
-    animation_right_dir(&data->last_bat_2);
-    move_bat_part_1(data);
+    animation_left_dir(&d->last_bat_1);
+    animation_right_dir(&d->last_bat_2);
+    move_bat_part_1(d);
 }

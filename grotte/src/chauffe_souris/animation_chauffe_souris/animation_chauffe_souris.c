@@ -18,17 +18,17 @@ int which_dir(chauffe_souris_t *chauffe_souris)
         return (0);
 }
 
-void animation_chauffe_souris(data_t *data)
+void animation_chauffe_souris(d_t *d)
 {
-    for (int i = 0; i < data->nbr_chf_souris; i++) {
+    for (int i = 0; i < d->nbr_chf_souris; i++) {
         if(which_dir(&CHF_SOURIS[i]) == 1) {
-            CHF_SOURIS[i].sprite = data->sprite_grotte.chf_souris_left;
+            CHF_SOURIS[i].sprite = d->sprite_grotte.chf_souris_left;
             animation_left_dir(&CHF_SOURIS[i]);
-            data->active_dir = 0;
+            d->active_dir = 0;
         } else {
-            CHF_SOURIS[i].sprite = data->sprite_grotte.chf_souris_rght;
+            CHF_SOURIS[i].sprite = d->sprite_grotte.chf_souris_rght;
             animation_right_dir(&CHF_SOURIS[i]);
-            data->active_dir = 1;
+            d->active_dir = 1;
         }
     }
 }

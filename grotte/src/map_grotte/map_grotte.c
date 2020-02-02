@@ -8,7 +8,7 @@
 #include "structure.h"
 #include "map_grotte.h"
 
-void map_grotte(data_t *data)
+void map_grotte(d_t *d)
 {
-    move_map_grotte(data);
+    move_map_grotte(d);
 }
