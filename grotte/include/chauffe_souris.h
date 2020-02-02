@@ -20,5 +20,7 @@ void move_chauffe_souris(data_t *data);
 void collision(data_t *data);
 void init_bat_die(data_t *data);
 void bat_die(data_t *data);
+void last_scene(data_t *data);
+void init_last_scene(data_t *data);
 
 #endif

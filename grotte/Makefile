@@ -25,6 +25,7 @@ SRC	=	main.c \
 		src/bat_die/bat_die.c \
 		src/scope_bat.c \
 		src/intro/intro.c \
+		src/last_scene/last_scene.c \
 
 FLAGS =-I./include
 

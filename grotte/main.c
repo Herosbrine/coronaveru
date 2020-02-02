@@ -13,6 +13,7 @@ void game(data_t *data)
     init_variables(data);
     intro(data);
     srand(time(NULL));
+    sfSound_play(data->stress_music.bang);
     while (sfRenderWindow_isOpen(data->window)){
         event_gestion(data);
         game_instruction(data);
@@ -20,11 +21,8 @@ void game(data_t *data)
         display_sprite(data);
         sfRenderWindow_display(data->window);
     }
-    for (int i = 0; i < data->nbr_chf_souris; i++) {
-        if (data->chauffe_souris_tab[i].is_die == 0)
-            data->last_bat_alive += 1;
-    }
-    printf("total : %d\n", data->last_bat_alive);
+    sfSound_destroy(data->stress_music.bang);
+    sfSoundBuffer_destroy(data->stress_music.sbang);
 }
 
 int main(void)

@@ -63,6 +63,13 @@ typedef struct chauffe_souris_s
     int is_die;
 } chauffe_souris_t;
 
+typedef struct my_music_s
+{
+    sfSoundBuffer *sbang;
+    sfSound *bang;
+} my_music_t;
+
+
 typedef struct data_s
 {
     sfRenderWindow *window;
@@ -71,6 +78,10 @@ typedef struct data_s
     map_grotte_pos_t map_grotte_pos;
     chauffe_souris_t *chauffe_souris_tab;
     chauffe_souris_t bat_die;
+    sfClock *button_clock;
+    chauffe_souris_t last_bat_1;
+    chauffe_souris_t last_bat_2;
+    my_music_t stress_music;
     int nbr_chf_souris;
     int active_dir;
     int active_click;
@@ -81,6 +92,8 @@ typedef struct data_s
     float mouse_move_x;
     float mouse_move_y;
     int last_bat_alive;
+    int active_restart;
+    int end_scene;
 } data_t;
 
 #endif

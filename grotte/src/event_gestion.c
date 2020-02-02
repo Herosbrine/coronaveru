@@ -6,6 +6,7 @@
 */
 
 #include "structure.h"
+#include "macro.h"
 
 void event_gestion(data_t *data)
 {
@@ -19,15 +20,22 @@ void event_gestion(data_t *data)
             data->mouse_move_y = event.mouseMove.y - (171 / 2);
             sfSprite_setPosition(data->sprite_grotte.scope, (sfVector2f){data->mouse_move_x, data->mouse_move_y});
         }
-        if (sfMouse_isButtonPressed(sfMouseLeft)){
-            data->mouse_button_x = event.mouseButton.x;
-            data->mouse_button_y = event.mouseButton.y;
-            data->active_click = 1;
-        } else
-        {
+        if (data->active_click == 1 && GET_TIME(data->button_clock) <= 150) {
             data->mouse_button_x = 0;
             data->mouse_button_y = 0;
             data->active_click = 0;
+        } else {
+            if (sfMouse_isButtonPressed(sfMouseLeft)){
+                data->mouse_button_x = event.mouseButton.x;
+                data->mouse_button_y = event.mouseButton.y;
+                data->active_click = 1;
+                sfClock_restart(data->button_clock);
+            } else
+            {
+                data->mouse_button_x = 0;
+                data->mouse_button_y = 0;
+                data->active_click = 0;
+            }
         }
     }
 }

@@ -16,8 +16,11 @@ void animation(data_t *data)
 
 void game_instruction(data_t *data)
 {
+    if (data->end_scene == 0) {
     map_grotte(data);
-    animation(data);
-    //move_chauffe_souris(data);
-    collision(data);
+        animation(data);
+        collision(data);
+    } else {
+        last_scene(data);
+    }
 }
