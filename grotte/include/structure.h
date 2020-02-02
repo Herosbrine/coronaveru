@@ -97,52 +97,8 @@ typedef struct d_s
     int scene_faez;
 } d_t;
 
-/* DIRECTION */
-#define UP      1
-#define DOWN    2
-#define LEFT    3
-#define RIGHT   4
-#define NUMBER_OF_DIRECTION   4
-
-/* ACTIVATE/DESACTIVATE */
-#define OFF     0
-#define ON      1
-
-/* BOTS PARAMETERS */
-#define NUMBER_OF_BOTS        15
-#define BOTS_INFECTED         4
-#define NUMBER_OF_ID          8
-#define NUMBER_OF_DIRECTION   4
-#define SPEED_BOT_MIN         2
-#define SPEED_BOT_MAX         6
-#define SPEED_BOT_INFECTED    SPEED_BOT_MAX / 2
-
-/* MAP PARAMETERS */
-#define MIN_X                 42
-#define MAX_X                 1838
-#define MIN_Y                 126
-#define MAX_Y                 958
-#define MILLISECOND_PER_SOIN  4000
-#define LIMIT_SOIN            6
-
-/* PLAYERS PARAMETER */
-#define SPEED_PLAYER_ONE      5
-#define SPEED_PLAYER_TWO      5
-
-/* RANDOM CHANGE DIRECTION */
-#define MIN_CH_DIR            30
-#define MAX_CH_DIR            400
-
-/* OTHERS */
-#define SOINS_LIST 6
-
 typedef struct textures_s
 {
-    sfTexture *soin;
-    sfTexture *player_one;
-    sfTexture *player_two;
-    sfTexture *bot;
-    sfTexture *map;
     sfTexture *ttext1a;
     sfTexture *ttext1b;
     sfTexture *ttext1c;
@@ -166,50 +122,6 @@ typedef struct textures_s
     sfTexture *tcommand;
 }textures_t;
 
-typedef struct soins_s
-{
-    int active;
-    sfSprite *sprite;
-    int pos_x;
-    int pos_y;
-}soins_t;
-
-typedef struct players_s
-{
-    int pos_x;
-    int pos_y;
-    int nb_soin;
-    int direction;
-    int animation;
-    sfIntRect rect;
-    sfClock *clock;
-    sfSprite *sprite;
-}players_t;
-
-typedef struct bot_s
-{
-    int id;
-    int counter_ch_dir;
-    int change_direction;
-    int speed;
-    int pos_x;
-    int pos_y;
-    int direction;
-    int is_infected;
-    sfIntRect rect;
-    sfClock *clock;
-    sfSprite *sprite;
-}bot_t;
-
-typedef struct sound_s
-{
-    sfSound *horror;
-}sound_t;
-
-typedef struct sound_buffer_s
-{
-    sfSoundBuffer *horror;
-}sound_buffer_t;
 
 typedef struct text_1_s
 {
@@ -261,25 +173,9 @@ typedef struct bite_s
 
 typedef struct data_s
 {
-    int sound_active;
     sfRenderWindow *window;
-    sfFont *font;
-    sfClock *soin_generator;
     sfEvent event;
-    int soin_active;
-    int number_of_bots;
-    int begin_animation;
-    int animation_number;
-    sfSprite *s_map;
-    soins_t soins;
-    soins_t *soins_list;
-    bot_t bot;
-    bot_t *bot_list;
     textures_t textures;
-    players_t players;
-    players_t *players_list;
-    sound_buffer_t sound_buffer;
-    sound_t sound;
     text_1_t text1;
     text_2_t text2;
     text_3_t text3;

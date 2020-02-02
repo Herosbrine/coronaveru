@@ -28,6 +28,8 @@ SRC	=	main.c \
 		src/last_scene/last_scene.c \
 		test/test.c \
       	test/src/initialization.c \
+      	../coronaveru_suite/src/initialization.c \
+      	../coronaveru_suite/main.c \
 
 FLAGS =-I./include
 

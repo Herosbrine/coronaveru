@@ -5,10 +5,10 @@
 ** main.c
 */
 
-#include "game.h"
+#include "../grotte/include/game.h"
 #include "my.h"
 
-void display_game(data2_t *data2)
+void display_game2(data2_t *data2)
 {
     sfRenderWindow_clear(data2->window, sfBlack);
     sfRenderWindow_drawSprite(data2->window, data2->s_map, NULL);
@@ -44,7 +44,7 @@ void display_game(data2_t *data2)
     sfRenderWindow_display(data2->window);
 }
 
-void events_handling(data2_t *data2)
+void events_handling2(data2_t *data2)
 {
     int act = 0;
 
@@ -446,7 +446,7 @@ int is_defeat(data2_t *data2)
     return (1);
 }
 
-void game_instruction(data2_t *data2)
+void game_instruction2(data2_t *data2)
 {
     do_begin_animation(data2);
     if (is_defeat(data2)){
@@ -873,24 +873,24 @@ void game_instruction(data2_t *data2)
     }
 }
 
-void game_loop(data2_t *data2)
+void game_loop2(data2_t *data2)
 {
     sfSound_play(data2->sound.horror);
     sfSound_setLoop(data2->sound.horror, sfTrue);
     while (sfRenderWindow_isOpen(data2->window)){
-        events_handling(data2);
-        game_instruction(data2);
-        display_game(data2);
+        events_handling2(data2);
+        game_instruction2(data2);
+        display_game2(data2);
     }
 }
 
-int main(int ac, char **av)
+int send_corona(void)
 {
     data2_t data2;
 
     srand(time(NULL));
     data2.wave = 1;
     initialize_data2(&data2);
-    game_loop(&data2);
+    game_loop2(&data2);
     return (0);
 }

@@ -11,7 +11,7 @@
 void game(d_t *d)
 {
     init_variables(d);
-    //intro(d);
+    intro(d);
     srand(time(NULL));
     sfSound_play(d->stress_music.bang);
     while (sfRenderWindow_isOpen(d->window)){
@@ -32,8 +32,10 @@ int main(void)
 {
     d_t d;
     data_t data;
+    data2_t data2;
 
     game(&d);
     video(&data);
+    send_corona(&data2);
     return (0);
 }

@@ -9,7 +9,7 @@
 #include "my.h"
 #include <stdlib.h>
 
-sfRenderWindow *create_window(void)
+sfRenderWindow *create_window2(void)
 {
     sfRenderWindow *window;
     sfVideoMode video_mode = {1920, 1080, 32};
@@ -34,7 +34,7 @@ void initialize_data2(data2_t *data2)
     data2->animation_number = 1;
     data2->begin_animation = ON;
     data2->font = sfFont_createFromFile("style/font.ttf");
-    data2->window = create_window();
+    data2->window = create_window2();
     data2->s_map = sfSprite_create();
     data2->textures.map = sfTexture_createFromFile("img/map.png", NULL);
     sfSprite_setTexture(data2->s_map, data2->textures.map, sfTrue);
