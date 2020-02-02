@@ -29,8 +29,8 @@
 #define ON      1
 
 /* BOTS PARAMETERS */
-#define NUMBER_OF_BOTS        15
-#define BOTS_INFECTED         4
+#define NUMBER_OF_BOTS        2
+#define BOTS_INFECTED         1
 #define NUMBER_OF_ID          8
 #define NUMBER_OF_DIRECTION   4
 #define SPEED_BOT_MIN         2
@@ -56,17 +56,11 @@
 /* OTHERS */
 #define SOINS_LIST 10
 
-typedef struct exit_s
-{
-    sfSprite *leave;
-    sfTexture *leave_s;
-    int pos_x;
-    int pos_y
-}exit_t;
 typedef struct textures_s
 {
     sfTexture *soin;
     sfTexture *exit;
+    sfTexture *sound;
     sfTexture *player_one;
     sfTexture *player_two;
     sfTexture *bot;
@@ -128,7 +122,7 @@ typedef struct text_s
     sfText *antidote2_int;
 }text_t;
 
-typedef struct data_s
+typedef struct data2_s
 {
     int sound_active;
     int wave;
@@ -136,10 +130,13 @@ typedef struct data_s
     sfFont *font;
     sfClock *soin_generator;
     sfEvent event;
+    sfIntRect sound_rect;
     int soin_active;
+    int number_of_bots_infected;
     int number_of_bots;
     int begin_animation;
     int animation_number;
+    sfSprite *sound_sprite;
     sfSprite *s_map;
     sfSprite *exit_sprite;
     soins_t soins;
@@ -152,15 +149,14 @@ typedef struct data_s
     text_t text;
     sound_buffer_t sound_buffer;
     sound_t sound;
-    exit_t exit;
-}data_t;
+}data2_t;
 
 /* INITIALIZE GAME */
 sfRenderWindow *create_window(void);
-void initialize_data(data_t *data);
-void initialize_players(data_t *data);
-void initialize_bots(data_t *data);
-void game_instruction(data_t *data);
+void initialize_data2(data2_t *data2);
+void initialize_players(data2_t *data2);
+void initialize_bots(data2_t *data2);
+void game_instruction(data2_t *data2);
 int random_number(int nb1, int nb2);
 
 #endif /* GAME_H_ */
