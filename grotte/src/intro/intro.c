@@ -430,8 +430,8 @@ void intro(d_t *d)
                sfRenderWindow_drawSprite(d->window, stext10d, NULL);
 
         else if (sfTime_asSeconds(time) > 37) {
-                sfSound_destroy(bang);
                 sfSoundBuffer_destroy(sbang);
+                sfSound_destroy(bang);
                 break;
         }
         sfRenderWindow_display(d->window);
